@@ -244,7 +244,7 @@
             padding-top: 15px;
             border-top: 1px solid var(--border-color);
             font-size: 0.9rem;
-            color: #666;
+            color: #000000;
         }
         
         .amount-input {
@@ -455,6 +455,175 @@
             cursor: pointer;
         }
         
+        /* Pending Chanda Alert Styles */
+        .pending-chanda-card {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .pending-chanda-card h3 {
+            font-family: 'Amiri', serif;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .pending-chanda-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        .pending-chanda-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .pending-chanda-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        /* WhatsApp Settings Styles */
+        .whatsapp-settings {
+            background-color: #eaf6ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .whatsapp-number-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .whatsapp-number-input input {
+            flex: 1;
+            margin-left: 10px;
+        }
+        
+        .whatsapp-preview {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .whatsapp-message {
+            background-color: #dcf8c6;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .whatsapp-message::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #dcf8c6;
+            transform: rotate(180deg);
+        }
+        
+        .whatsapp-timestamp {
+            font-size: 0.75rem;
+            color: #999;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        /* Chanda Receipt Background Styles */
+        .receipt-background-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .receipt-bg-option {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .receipt-bg-option:hover {
+            border-color: var(--primary-green);
+        }
+        
+        .receipt-bg-option.selected {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.3);
+        }
+        
+        .receipt-bg-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .receipt-preview-container {
+            position: relative;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .receipt-preview {
+            width: 100%;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .receipt-header {
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .receipt-content {
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .receipt-footer {
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        /* Announcement Image Styles */
+        .announcement-image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
         @media (max-width: 768px) {
             .navbar-brand {
                 font-size: 1.5rem;
@@ -519,6 +688,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#" data-section="pending-chanda">
+                            <i class="fas fa-exclamation-circle me-1"></i> Pending Chanda
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="#" data-section="summary">
                             <i class="fas fa-chart-pie me-1"></i> Summary
                         </a>
@@ -559,6 +733,28 @@
                                     <label for="masjidAddress" class="form-label">Address</label>
                                     <textarea class="form-control" id="masjidAddress" rows="3" placeholder="Enter masjid address"></textarea>
                                 </div>
+                                
+                                <!-- WhatsApp Settings -->
+                                <div class="whatsapp-settings">
+                                    <h6><i class="fab fa-whatsapp me-2"></i> WhatsApp Settings</h6>
+                                    <p class="small text-muted">Add up to 3 WhatsApp numbers for sending payment reminders</p>
+                                    
+                                    <div class="whatsapp-number-input">
+                                        <label class="form-label mb-0">Number 1:</label>
+                                        <input type="tel" class="form-control" id="whatsappNumber1" placeholder="Enter WhatsApp number">
+                                    </div>
+                                    
+                                    <div class="whatsapp-number-input">
+                                        <label class="form-label mb-0">Number 2:</label>
+                                        <input type="tel" class="form-control" id="whatsappNumber2" placeholder="Enter WhatsApp number">
+                                    </div>
+                                    
+                                    <div class="whatsapp-number-input">
+                                        <label class="form-label mb-0">Number 3:</label>
+                                        <input type="tel" class="form-control" id="whatsappNumber3" placeholder="Enter WhatsApp number">
+                                    </div>
+                                </div>
+                                
                                 <div class="action-buttons">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fas fa-save me-2"></i> Save
@@ -1034,6 +1230,16 @@
                                         <option value="high">High</option>
                                     </select>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="announcementImage" class="form-label">Upload Image (Optional)</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="announcementImage" accept="image/*">
+                                        <label for="announcementImage" class="file-upload-label">
+                                            <i class="fas fa-upload me-2"></i> Upload Image
+                                        </label>
+                                    </div>
+                                    <div id="announcementImagePreview" class="mt-2"></div>
+                                </div>
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-plus me-2"></i> Create Announcement
                                 </button>
@@ -1121,8 +1327,31 @@
                                     <label for="chandaNotes" class="form-label">Notes</label>
                                     <textarea class="form-control" id="chandaNotes" rows="2" placeholder="Additional notes (optional)"></textarea>
                                 </div>
+                                
+                                <!-- Receipt Background Options -->
+                                <div class="mb-3">
+                                    <label class="form-label">Receipt Background</label>
+                                    <div class="receipt-background-options">
+                                        <div class="receipt-bg-option" data-bg="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Background 1">
+                                        </div>
+                                        <div class="receipt-bg-option" data-bg="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Background 2">
+                                        </div>
+                                        <div class="receipt-bg-option" data-bg="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Background 3">
+                                        </div>
+                                        <div class="receipt-bg-option" data-bg="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Background 4">
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-plus me-2"></i> Add Collection
+                                </button>
+                                <button type="button" class="btn btn-outline-primary ms-2" id="generateReceiptPreview">
+                                    <i class="fas fa-eye me-2"></i> Preview Receipt
                                 </button>
                             </form>
                         </div>
@@ -1225,6 +1454,87 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="mt-4">
+                        <div class="receipt-preview-container" id="receiptPreviewContainer" style="display: none;">
+                            <div class="receipt-preview" id="receiptPreview">
+                                <div class="receipt-header">
+                                    <h2>Masjid Receipt</h2>
+                                    <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+                                </div>
+                                
+                                <div class="receipt-content">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>Donor Name:</strong> <span id="receiptDonorName">-</span></p>
+                                            <p><strong>Date:</strong> <span id="receiptDate">-</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><strong>Amount:</strong> ₹<span id="receiptAmount">0.00</span></p>
+                                            <p><strong>Purpose:</strong> <span id="receiptPurpose">-</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <p><strong>Collector:</strong> <span id="receiptCollector">-</span></p>
+                                            <p><strong>Notes:</strong> <span id="receiptNotes">-</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="receipt-footer">
+                                    <p>Thank you for your contribution!</p>
+                                    <p id="receiptQrCode"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <button class="btn btn-primary" id="downloadReceiptImage">
+                                    <i class="fas fa-download me-2"></i> Download as Image
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pending Chanda Section -->
+        <section id="pending-chanda" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-exclamation-circle me-2"></i> Pending Chanda Alerts</h5>
+                </div>
+                <div class="card-body">
+                    <div class="pending-chanda-card">
+                        <h3>किसका किसका चंदा बाकी है?</h3>
+                        <p class="text-center mb-3">उन सभी लोगों की सूची जिन्होंने अभी तक चंदा नहीं दिया है</p>
+                        
+                        <div id="pendingChandaList">
+                            <!-- Pending chanda items will be added here dynamically -->
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button class="btn btn-primary" id="sendWhatsAppAlerts">
+                                <i class="fab fa-whatsapp me-2"></i> Send WhatsApp Alerts
+                            </button>
+                            <button class="btn btn-outline-primary ms-2" id="refreshPendingChanda">
+                                <i class="fas fa-sync-alt me-2"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h6>WhatsApp Message Preview</h6>
+                        <div class="whatsapp-preview">
+                            <div class="whatsapp-message">
+                                <p id="whatsappMessagePreview">प्रिय [नाम],</p>
+                                <p>आपका मासिक चंदा ₹[राशि] अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।</p>
+                                <p>धन्यवाद,<br>[मस्जिद का नाम]</p>
+                                <div class="whatsapp-timestamp">Today, 10:30 AM</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1237,7 +1547,7 @@
                 </div>
                 <div class="card-body">
                     <div class="summary-card">
-                        <h3>मस्जिद वित्तीय सारांश</h3>
+                        <h3>मस्जिद का पूरा हिसाब किताब:--</h3>
                         <div class="summary-item income">
                             <span>जुम्मा कलेक्शन:</span>
                             <span>₹<span id="summaryJummaCollection">0.00</span></span>
@@ -1247,11 +1557,11 @@
                             <span>₹<span id="summaryMonthlyChanda">0.00</span></span>
                         </div>
                         <div class="summary-item income">
-                            <span>सामान्य दान:</span>
+                            <span>सामान्य चंदा:</span>
                             <span>₹<span id="summaryGeneralDonations">0.00</span></span>
                         </div>
                         <div class="summary-item income">
-                            <span>निर्माण दान:</span>
+                            <span>निर्माण चंदा:</span>
                             <span>₹<span id="summaryConstructionDonations">0.00</span></span>
                         </div>
                         <div class="summary-item income">
@@ -1405,6 +1715,51 @@
         </div>
     </div>
 
+    <!-- WhatsApp Modal -->
+    <div class="modal fade" id="whatsappModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Send WhatsApp Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="whatsappNumberSelect" class="form-label">Select WhatsApp Number</label>
+                        <select class="form-select" id="whatsappNumberSelect">
+                            <option value="">-- Select Number --</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="whatsappMessage" class="form-label">Message</label>
+                        <textarea class="form-control" id="whatsappMessage" rows="5"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Message Preview</label>
+                        <div class="whatsapp-preview">
+                            <div class="whatsapp-message">
+                                <p id="whatsappPreviewText">Message preview will appear here</p>
+                                <div class="whatsapp-timestamp">Today, 10:30 AM</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Receipt Image</label>
+                        <div id="whatsappImagePreview" class="text-center">
+                            <p class="text-muted">Receipt image will appear here</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="sendWhatsAppMessage">
+                        <i class="fab fa-whatsapp me-2"></i> Send Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
 
@@ -1438,6 +1793,9 @@
             
             // Initialize financial chart
             initFinancialChart();
+            
+            // Initialize pending chanda
+            updatePendingChandaList();
         });
         
         // Set current date for all date fields
@@ -1472,6 +1830,11 @@
                     if (sectionId === 'summary') {
                         updateSummarySection();
                         updateFinancialChart();
+                    }
+                    
+                    // Update pending chanda if pending chanda tab is clicked
+                    if (sectionId === 'pending-chanda') {
+                        updatePendingChandaList();
                     }
                 });
             });
@@ -1670,6 +2033,79 @@
                 document.getElementById('customDateRange').style.display = 'flex';
                 document.getElementById('financialReportForm').scrollIntoView({ behavior: 'smooth' });
             });
+            
+            // Announcement image upload
+            document.getElementById('announcementImage').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const preview = document.getElementById('announcementImagePreview');
+                        preview.innerHTML = `<img src="${e.target.result}" class="announcement-image-preview" alt="Announcement Image">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Receipt background options
+            document.querySelectorAll('.receipt-bg-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.receipt-bg-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    
+                    const bgImage = this.getAttribute('data-bg');
+                    document.getElementById('receiptPreview').style.backgroundImage = `url('${bgImage}')`;
+                });
+            });
+            
+            // Generate receipt preview
+            document.getElementById('generateReceiptPreview').addEventListener('click', function() {
+                generateReceiptPreview();
+            });
+            
+            // Download receipt image
+            document.getElementById('downloadReceiptImage').addEventListener('click', function() {
+                downloadReceiptAsImage();
+            });
+            
+            // Refresh pending chanda
+            document.getElementById('refreshPendingChanda').addEventListener('click', function() {
+                updatePendingChandaList();
+                showToast('Pending chanda list refreshed', 'success');
+            });
+            
+            // Send WhatsApp alerts
+            document.getElementById('sendWhatsAppAlerts').addEventListener('click', function() {
+                sendWhatsAppAlerts();
+            });
+            
+            // Send WhatsApp message
+            document.getElementById('sendWhatsAppMessage').addEventListener('click', function() {
+                const phoneNumber = document.getElementById('whatsappNumberSelect').value;
+                const message = document.getElementById('whatsappMessage').value;
+                
+                if (!phoneNumber || !message) {
+                    showToast('Please select a phone number and enter a message', 'error');
+                    return;
+                }
+                
+                // Open WhatsApp with the message
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                // Close the modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('whatsappModal'));
+                modal.hide();
+                
+                showToast('WhatsApp opened with pre-filled message', 'success');
+            });
+            
+            // Update WhatsApp message preview
+            document.getElementById('whatsappMessage').addEventListener('input', function() {
+                document.getElementById('whatsappPreviewText').textContent = this.value;
+            });
         }
         
         // Load data from localStorage
@@ -1679,6 +2115,13 @@
             if (masjidInfo.name) document.getElementById('masjidName').value = masjidInfo.name;
             if (masjidInfo.address) document.getElementById('masjidAddress').value = masjidInfo.address;
             if (masjidInfo.logo) document.getElementById('logoPreview').innerHTML = `<img src="${masjidInfo.logo}" alt="Masjid Logo">`;
+            
+            // Load WhatsApp numbers
+            if (masjidInfo.whatsappNumbers) {
+                if (masjidInfo.whatsappNumbers[0]) document.getElementById('whatsappNumber1').value = masjidInfo.whatsappNumbers[0];
+                if (masjidInfo.whatsappNumbers[1]) document.getElementById('whatsappNumber2').value = masjidInfo.whatsappNumbers[1];
+                if (masjidInfo.whatsappNumbers[2]) document.getElementById('whatsappNumber3').value = masjidInfo.whatsappNumbers[2];
+            }
             
             // Load committee members
             const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
@@ -2050,10 +2493,14 @@
             
             const totalBalance = totalIncome - totalExpenses;
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             // Generate report content
             let content = `
                 <div class="islamic-pdf-header">
-                    <h2>वित्तीय रिपोर्ट</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} वित्तीय रिपोर्ट</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -2191,7 +2638,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -2221,10 +2668,33 @@
             const logoImg = document.querySelector('#logoPreview img');
             const logo = logoImg ? logoImg.src : null;
             
-            const masjidInfo = { name, address, logo };
+            // Get WhatsApp numbers
+            const whatsappNumbers = [
+                document.getElementById('whatsappNumber1').value,
+                document.getElementById('whatsappNumber2').value,
+                document.getElementById('whatsappNumber3').value
+            ].filter(num => num.trim() !== '');
+            
+            const masjidInfo = { name, address, logo, whatsappNumbers };
             localStorage.setItem('masjidInfo', JSON.stringify(masjidInfo));
             
+            // Update WhatsApp number select
+            updateWhatsAppNumberSelect(whatsappNumbers);
+            
             showToast('Masjid information saved successfully!', 'success');
+        }
+        
+        // Update WhatsApp number select
+        function updateWhatsAppNumberSelect(numbers) {
+            const select = document.getElementById('whatsappNumberSelect');
+            select.innerHTML = '<option value="">-- Select Number --</option>';
+            
+            numbers.forEach((number, index) => {
+                const option = document.createElement('option');
+                option.value = number.replace(/\D/g, ''); // Remove non-digits
+                option.textContent = `Number ${index + 1}: ${number}`;
+                select.appendChild(option);
+            });
         }
         
         // Add committee member
@@ -2502,13 +2972,10 @@
             const member = committeeMembers.find(m => m.id == memberId);
             const household = households.find(h => h.id == householdId);
             
-            // Check if link already exists
-            const existingLink = memberHouseholdLinks.find(link => 
-                link.memberId == memberId && link.householdId == householdId
-            );
-            
+            // Check if household is already linked to another member
+            const existingLink = memberHouseholdLinks.find(link => link.householdId == householdId);
             if (existingLink) {
-                showToast('This household is already linked to this member', 'error');
+                showToast('This household is already linked to another member', 'error');
                 return;
             }
             
@@ -2801,9 +3268,13 @@
             const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
             const member = donation.memberId ? committeeMembers.find(m => m.id === donation.memberId) : null;
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             const content = `
                 <div class="islamic-pdf-header">
-                    <h2>Donation Receipt</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} Donation Receipt</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -2827,7 +3298,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -2990,9 +3461,13 @@
             
             if (!donation) return;
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             const content = `
                 <div class="islamic-pdf-header">
-                    <h2>Construction Donation Receipt</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} Construction Donation Receipt</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -3014,7 +3489,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -3201,9 +3676,13 @@
             
             if (!expense) return;
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             const content = `
                 <div class="islamic-pdf-header">
-                    <h2>Construction Expense Record</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} Construction Expense Record</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -3225,7 +3704,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -3272,6 +3751,7 @@
             const content = document.getElementById('announcementContent').value;
             const date = document.getElementById('announcementDate').value;
             const priority = document.getElementById('announcementPriority').value;
+            const imageFile = document.getElementById('announcementImage').files[0];
             
             if (!title || !content || !date) {
                 showToast('Please fill all required fields', 'error');
@@ -3279,22 +3759,53 @@
             }
             
             const announcements = JSON.parse(localStorage.getItem('announcements')) || [];
-            const newAnnouncement = {
-                id: Date.now(),
-                title,
-                content,
-                date,
-                priority
-            };
             
-            announcements.push(newAnnouncement);
-            localStorage.setItem('announcements', JSON.stringify(announcements));
-            
-            updateAnnouncementsTable(announcements);
-            
-            document.getElementById('announcementForm').reset();
-            setCurrentDate();
-            showToast('Announcement created successfully!', 'success');
+            // Handle image file
+            let imageData = null;
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageData = e.target.result;
+                    
+                    const newAnnouncement = {
+                        id: Date.now(),
+                        title,
+                        content,
+                        date,
+                        priority,
+                        image: imageData
+                    };
+                    
+                    announcements.push(newAnnouncement);
+                    localStorage.setItem('announcements', JSON.stringify(announcements));
+                    
+                    updateAnnouncementsTable(announcements);
+                    
+                    document.getElementById('announcementForm').reset();
+                    document.getElementById('announcementImagePreview').innerHTML = '';
+                    setCurrentDate();
+                    showToast('Announcement created successfully!', 'success');
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                const newAnnouncement = {
+                    id: Date.now(),
+                    title,
+                    content,
+                    date,
+                    priority,
+                    image: null
+                };
+                
+                announcements.push(newAnnouncement);
+                localStorage.setItem('announcements', JSON.stringify(announcements));
+                
+                updateAnnouncementsTable(announcements);
+                
+                document.getElementById('announcementForm').reset();
+                setCurrentDate();
+                showToast('Announcement created successfully!', 'success');
+            }
         }
         
         // Update announcements table
@@ -3370,10 +3881,14 @@
                 high: 'High'
             };
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             const preview = document.getElementById('announcementPreview');
             preview.innerHTML = `
                 <div class="islamic-pdf-header">
-                    <h2>${announcement.title}</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} ${announcement.title}</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -3381,6 +3896,12 @@
                     <p><strong>Date:</strong> ${formatDate(announcement.date)}</p>
                     <p><strong>Priority:</strong> <span class="${priorityClass[announcement.priority]}">${priorityLabel[announcement.priority]}</span></p>
                 </div>
+                
+                ${announcement.image ? `
+                    <div class="mb-4 text-center">
+                        <img src="${announcement.image}" alt="Announcement Image" class="img-fluid" style="max-width: 100%; max-height: 300px; border: 1px solid #ddd; padding: 5px;">
+                    </div>
+                ` : ''}
                 
                 <div class="mb-4">
                     <p>${announcement.content.replace(/\n/g, '<br>')}</p>
@@ -3564,6 +4085,69 @@
             return labels[purpose] || purpose;
         }
         
+        // Generate receipt preview
+        function generateReceiptPreview() {
+            const donor = document.getElementById('chandaDonor').value;
+            const amount = document.getElementById('chandaAmount').value;
+            const date = document.getElementById('chandaDate').value;
+            const collectorId = document.getElementById('chandaCollector').value;
+            const purpose = document.getElementById('chandaPurpose').value;
+            const notes = document.getElementById('chandaNotes').value;
+            
+            if (!donor || !amount || !date || !collectorId) {
+                showToast('Please fill all required fields', 'error');
+                return;
+            }
+            
+            const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
+            const collector = committeeMembers.find(m => m.id == collectorId);
+            
+            // Update receipt preview
+            document.getElementById('receiptDonorName').textContent = donor;
+            document.getElementById('receiptDate').textContent = formatDate(date);
+            document.getElementById('receiptAmount').textContent = parseFloat(amount).toFixed(2);
+            document.getElementById('receiptPurpose').textContent = getChandaPurposeLabel(purpose);
+            document.getElementById('receiptCollector').textContent = collector ? collector.name : '-';
+            document.getElementById('receiptNotes').textContent = notes || '-';
+            
+            // Show receipt preview
+            document.getElementById('receiptPreviewContainer').style.display = 'block';
+            
+            // Generate QR code
+            setTimeout(() => {
+                const qrCodeContainer = document.getElementById('receiptQrCode');
+                if (qrCodeContainer) {
+                    qrCodeContainer.innerHTML = '';
+                    new QRCode(qrCodeContainer, {
+                        text: `Chanda Collection: ${donor}, Amount: ₹${amount}, Date: ${date}`,
+                        width: 100,
+                        height: 100
+                    });
+                }
+            }, 100);
+            
+            // Scroll to receipt preview
+            document.getElementById('receiptPreviewContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Download receipt as image
+        function downloadReceiptAsImage() {
+            const receiptElement = document.getElementById('receiptPreview');
+            
+            html2canvas(receiptElement, {
+                scale: 2,
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `chanda-receipt-${new Date().toISOString().split('T')[0]}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                showToast('Receipt downloaded as image', 'success');
+            });
+        }
+        
         // View chanda collection
         function viewChandaCollection(id) {
             const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
@@ -3574,9 +4158,13 @@
             const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
             const collector = committeeMembers.find(m => m.id === collection.collectorId);
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             const content = `
                 <div class="islamic-pdf-header">
-                    <h2>Chanda Collection Receipt</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} Chanda Collection Receipt</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -3594,7 +4182,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -3632,6 +4220,316 @@
             }
         }
         
+        // Update pending chanda list
+        function updatePendingChandaList() {
+            const pendingChandaList = document.getElementById('pendingChandaList');
+            pendingChandaList.innerHTML = '';
+            
+            // Get all households
+            const households = JSON.parse(localStorage.getItem('households')) || [];
+            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
+            const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+            
+            // Get current month and year
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            
+            // Find households that haven't paid chanda for the current month
+            households.forEach(household => {
+                // Check if household is linked to a member
+                const link = memberHouseholdLinks.find(l => l.householdId === household.id);
+                
+                if (link) {
+                    // Check if household has paid chanda for current month
+                    const hasPaid = chandaCollections.some(c => {
+                        const collectionDate = new Date(c.date);
+                        return collectionDate.getMonth() === currentMonth && 
+                               collectionDate.getFullYear() === currentYear &&
+                               c.donor === household.name;
+                    });
+                    
+                    if (!hasPaid) {
+                        // Add to pending list
+                        const pendingItem = document.createElement('div');
+                        pendingItem.className = 'pending-chanda-item';
+                        pendingItem.innerHTML = `
+                            <div>
+                                <strong>${household.name}</strong>
+                                ${household.phone ? `<br><small>${household.phone}</small>` : ''}
+                            </div>
+                            <div class="pending-chanda-actions">
+                                <button class="btn btn-sm btn-success send-whatsapp-reminder" data-id="${household.id}" data-name="${household.name}" data-phone="${household.phone || ''}">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="btn btn-sm btn-primary mark-as-paid" data-id="${household.id}" data-name="${household.name}">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </div>
+                        `;
+                        pendingChandaList.appendChild(pendingItem);
+                    }
+                }
+            });
+            
+            // Add event listeners
+            document.querySelectorAll('.send-whatsapp-reminder').forEach(button => {
+                button.addEventListener('click', function() {
+                    const householdId = this.getAttribute('data-id');
+                    const householdName = this.getAttribute('data-name');
+                    const householdPhone = this.getAttribute('data-phone');
+                    sendWhatsAppReminder(householdId, householdName, householdPhone);
+                });
+            });
+            
+            document.querySelectorAll('.mark-as-paid').forEach(button => {
+                button.addEventListener('click', function() {
+                    const householdId = this.getAttribute('data-id');
+                    const householdName = this.getAttribute('data-name');
+                    markAsPaid(householdId, householdName);
+                });
+            });
+            
+            // Show message if no pending chanda
+            if (pendingChandaList.children.length === 0) {
+                pendingChandaList.innerHTML = `
+                    <div class="text-center py-3">
+                        <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+                        <p>कोई भी बकाया चंदा नहीं है!</p>
+                        <p class="text-muted">All households have paid their chanda for this month.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Send WhatsApp reminder
+        function sendWhatsAppReminder(householdId, householdName, householdPhone) {
+            // Get masjid info
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
+            // Create message in Hindi and English
+            const hindiMessage = `प्रिय ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nधन्यवाद,\n${masjidInfo.name || 'मस्जिद'}`;
+            
+            const englishMessage = `Dear ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            
+            // Combine messages
+            const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}`;
+            
+            // Get WhatsApp numbers
+            const whatsappNumbers = masjidInfo.whatsappNumbers || [];
+            
+            if (whatsappNumbers.length === 0) {
+                showToast('No WhatsApp numbers configured. Please add WhatsApp numbers in Masjid Info section.', 'error');
+                return;
+            }
+            
+            // Generate receipt image
+            generatePendingChandaReceiptImage(householdName, function(imageData) {
+                // Show WhatsApp modal
+                const modal = new bootstrap.Modal(document.getElementById('whatsappModal'));
+                
+                // Update WhatsApp number select
+                updateWhatsAppNumberSelect(whatsappNumbers);
+                
+                // Update message
+                document.getElementById('whatsappMessage').value = combinedMessage;
+                document.getElementById('whatsappPreviewText').textContent = combinedMessage;
+                
+                // Update image preview
+                const imagePreview = document.getElementById('whatsappImagePreview');
+                imagePreview.innerHTML = `<img src="${imageData}" class="img-fluid" alt="Receipt">`;
+                
+                // Show modal
+                modal.show();
+            });
+        }
+        
+        // Generate pending chanda receipt image
+        function generatePendingChandaReceiptImage(householdName, callback) {
+            // Create a temporary receipt element
+            const receiptElement = document.createElement('div');
+            receiptElement.style.position = 'absolute';
+            receiptElement.style.left = '-9999px';
+            receiptElement.style.width = '400px';
+            receiptElement.style.backgroundColor = 'white';
+            receiptElement.style.padding = '20px';
+            receiptElement.style.fontFamily = 'Montserrat, sans-serif';
+            
+            // Get masjid info
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
+            // Get current date
+            const now = new Date();
+            const formattedDate = formatDate(now);
+            
+            // Set receipt content
+            receiptElement.innerHTML = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2 style="margin: 0; color: #14793b;">${masjidInfo.name || 'Masjid'}</h2>
+                    <div style="font-family: 'Amiri', serif; font-size: 1.2rem; color: #006aff; margin: 5px 0;">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+                </div>
+                
+                <div style="background-color: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                    <p style="margin: 5px 0;"><strong>नाम / Name:</strong> ${householdName}</p>
+                    <p style="margin: 5px 0;"><strong>तिथि / Date:</strong> ${formattedDate}</p>
+                    <p style="margin: 5px 0;"><strong>विवरण / Description:</strong> मासिक चंदा / Monthly Chanda</p>
+                    <p style="margin: 5px 0;"><strong>स्थिति / Status:</strong> <span style="color: #dc3545;">बकाया / Pending</span></p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <p style="margin: 0; color: #666; font-size: 0.9rem;">कृपया जल्द से जल्द अपना चंदा जमा करवाएं</p>
+                    <p style="margin: 5px 0; color: #666; font-size: 0.9rem;">Please submit your chanda as soon as possible</p>
+                    <div id="pendingChandaQrCode" style="margin: 15px auto;"></div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #ddd; font-size: 0.8rem; color: #666;">
+                    Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}
+                </div>
+            `;
+            
+            // Add to body
+            document.body.appendChild(receiptElement);
+            
+            // Generate QR code
+            setTimeout(() => {
+                const qrCodeContainer = document.getElementById('pendingChandaQrCode');
+                if (qrCodeContainer) {
+                    qrCodeContainer.innerHTML = '';
+                    new QRCode(qrCodeContainer, {
+                        text: `Pending Chanda: ${householdName}, Date: ${formattedDate}`,
+                        width: 100,
+                        height: 100
+                    });
+                }
+                
+                // Convert to image
+                html2canvas(receiptElement, {
+                    scale: 2,
+                    logging: false,
+                    useCORS: true
+                }).then(canvas => {
+                    // Remove temporary element
+                    document.body.removeChild(receiptElement);
+                    
+                    // Get image data
+                    const imageData = canvas.toDataURL('image/png');
+                    
+                    // Callback with image data
+                    callback(imageData);
+                });
+            }, 100);
+        }
+        
+        // Mark as paid
+        function markAsPaid(householdId, householdName) {
+            // Get current date
+            const now = new Date();
+            const formattedDate = formatDateForInput(now);
+            
+            // Get households and member-household links
+            const households = JSON.parse(localStorage.getItem('households')) || [];
+            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
+            const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
+            
+            // Find household and link
+            const household = households.find(h => h.id == householdId);
+            const link = memberHouseholdLinks.find(l => l.householdId == householdId);
+            
+            if (!household || !link) {
+                showToast('Household not found', 'error');
+                return;
+            }
+            
+            // Find member
+            const member = committeeMembers.find(m => m.id === link.memberId);
+            
+            // Add donation to link
+            const donation = {
+                id: Date.now(),
+                amount: 0, // Will be set by user
+                date: formattedDate
+            };
+            
+            // Ask for amount
+            const amount = prompt(`Enter chanda amount for ${householdName}:`);
+            
+            if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
+                donation.amount = parseFloat(amount);
+                
+                link.donations.push(donation);
+                localStorage.setItem('memberHouseholdLinks', JSON.stringify(memberHouseholdLinks));
+                
+                // Update tables
+                updateMemberHouseholdLinksTable(memberHouseholdLinks);
+                updatePendingChandaList();
+                updateSummarySection();
+                
+                showToast(`${householdName} marked as paid`, 'success');
+            } else if (amount !== null) {
+                showToast('Please enter a valid amount', 'error');
+            }
+        }
+        
+        // Send WhatsApp alerts to all pending
+        function sendWhatsAppAlerts() {
+            // Get masjid info
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
+            // Get WhatsApp numbers
+            const whatsappNumbers = masjidInfo.whatsappNumbers || [];
+            
+            if (whatsappNumbers.length === 0) {
+                showToast('No WhatsApp numbers configured. Please add WhatsApp numbers in Masjid Info section.', 'error');
+                return;
+            }
+            
+            // Get all pending households
+            const households = JSON.parse(localStorage.getItem('households')) || [];
+            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
+            const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+            
+            // Get current month and year
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
+            
+            // Find households that haven't paid chanda for the current month
+            const pendingHouseholds = households.filter(household => {
+                const link = memberHouseholdLinks.find(l => l.householdId === household.id);
+                
+                if (link) {
+                    const hasPaid = chandaCollections.some(c => {
+                        const collectionDate = new Date(c.date);
+                        return collectionDate.getMonth() === currentMonth && 
+                               collectionDate.getFullYear() === currentYear &&
+                               c.donor === household.name;
+                    });
+                    
+                    return !hasPaid;
+                }
+                
+                return false;
+            });
+            
+            if (pendingHouseholds.length === 0) {
+                showToast('No pending chanda found', 'success');
+                return;
+            }
+            
+            // Show confirmation
+            if (confirm(`Send WhatsApp reminders to ${pendingHouseholds.length} households?`)) {
+                // Generate and send reminders for each household
+                pendingHouseholds.forEach((household, index) => {
+                    setTimeout(() => {
+                        sendWhatsAppReminder(household.id, household.name, household.phone || '');
+                    }, index * 1000); // Delay each message by 1 second
+                });
+                
+                showToast(`Sending reminders to ${pendingHouseholds.length} households`, 'success');
+            }
+        }
+        
         // Generate committee report
         function generateCommitteeReport() {
             const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
@@ -3643,9 +4541,13 @@
                 return;
             }
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             let content = `
                 <div class="islamic-pdf-header">
-                    <h2>Committee Members & Households Report</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} Committee Members & Households Report</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -3723,7 +4625,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -3753,9 +4655,13 @@
             
             const totalAmount = filteredDonations.reduce((sum, donation) => sum + donation.amount, 0);
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             let content = `
                 <div class="islamic-pdf-header">
-                    <h2>${reportTitle}</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} ${reportTitle}</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -3811,7 +4717,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -3848,9 +4754,13 @@
             const totalExpenses = constructionExpenses.reduce((sum, expense) => sum + expense.amount, 0);
             const remaining = totalDonations - totalExpenses;
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             let content = `
                 <div class="islamic-pdf-header">
-                    <h2>Construction Budget & Expenses Report</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} Construction Budget & Expenses Report</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -3948,7 +4858,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -3990,9 +4900,13 @@
                 high: 'High'
             };
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             const content = `
                 <div class="islamic-pdf-header">
-                    <h2>${announcement.title}</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} ${announcement.title}</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -4000,6 +4914,12 @@
                     <p><strong>Date:</strong> ${formatDate(announcement.date)}</p>
                     <p><strong>Priority:</strong> <span class="${priorityClass[announcement.priority]}">${priorityLabel[announcement.priority]}</span></p>
                 </div>
+                
+                ${announcement.image ? `
+                    <div class="mb-4 text-center">
+                        <img src="${announcement.image}" alt="Announcement Image" style="max-width: 100%; max-height: 300px; border: 1px solid #ddd; padding: 5px;">
+                    </div>
+                ` : ''}
                 
                 <div class="mb-4">
                     <p>${announcement.content.replace(/\n/g, '<br>')}</p>
@@ -4010,7 +4930,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
@@ -4053,9 +4973,13 @@
             
             const totalAmount = filteredCollections.reduce((sum, collection) => sum + collection.amount, 0);
             
+            // Get masjid info for PDF header
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
             let content = `
                 <div class="islamic-pdf-header">
-                    <h2>${reportTitle}</h2>
+                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+                    <h2>${masjidInfo.name || 'Masjid'} ${reportTitle}</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
                 
@@ -4111,7 +5035,7 @@
                 </div>
                 
                 <div class="islamic-pdf-footer">
-                    <p>Generated on ${new Date().toLocaleDateString()} | Masjid Management System</p>
+                    <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
             `;
             
