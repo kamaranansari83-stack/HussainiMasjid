@@ -23,7 +23,7 @@
             --cream: #f8f5f0;
             --dark-blue: #006aff;
             --light-blue: #00f7ff;
-            --text-dark: #d000ff;
+            --text-dark: #333333;
             --border-color: #dddddd;
         }
         
@@ -545,75 +545,126 @@
             margin-top: 5px;
         }
         
-        /* Chanda Receipt Background Styles */
-        .receipt-background-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        /* Chanda Receipt Styles */
+        .islamic-receipt {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid var(--primary-green);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            font-family: 'Amiri', serif;
+            color: #333;
+        }
+        
+        .islamic-receipt-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed var(--primary-green);
+        }
+        
+        .islamic-receipt-header h2 {
+            color: var(--primary-green);
+            margin-bottom: 5px;
+            font-size: 1.8rem;
+        }
+        
+        .islamic-receipt-header .arabic-text {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+        }
+        
+        .islamic-receipt-masjid-info {
+            text-align: center;
             margin-bottom: 15px;
         }
         
-        .receipt-bg-option {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s;
+        .islamic-receipt-masjid-info h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--primary-green);
         }
         
-        .receipt-bg-option:hover {
-            border-color: var(--primary-green);
+        .islamic-receipt-masjid-info p {
+            margin: 5px 0;
+            font-size: 0.9rem;
         }
         
-        .receipt-bg-option.selected {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(255, 196, 0, 0.3);
-        }
-        
-        .receipt-bg-option img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .receipt-preview-container {
-            position: relative;
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .receipt-preview {
-            width: 100%;
-            min-height: 400px;
-            background-size: cover;
-            background-position: center;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .receipt-header {
-            text-align: center;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        
-        .receipt-content {
-            background-color: rgba(255,255,255,0.8);
-            border-radius: 8px;
-            padding: 15px;
+        .islamic-receipt-content {
             margin: 20px 0;
         }
         
-        .receipt-footer {
+        .islamic-receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .islamic-receipt-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--primary-green);
+        }
+        
+        .islamic-receipt-label {
+            font-weight: 600;
+        }
+        
+        .islamic-receipt-value {
+            text-align: right;
+        }
+        
+        .islamic-receipt-amount {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+        
+        .islamic-receipt-amount-words {
             text-align: center;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            margin: 15px 0;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .islamic-receipt-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .islamic-receipt-seal {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .islamic-receipt-seal-left, .islamic-receipt-seal-right {
+            width: 45%;
+            text-align: center;
+        }
+        
+        .islamic-receipt-seal-line {
+            height: 1px;
+            background-color: #333;
+            margin: 30px 0 5px;
+        }
+        
+        .islamic-receipt-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
         }
         
         /* Announcement Image Styles */
@@ -643,6 +694,10 @@
             
             .card-body {
                 padding: 15px;
+            }
+            
+            .islamic-receipt-actions {
+                flex-direction: column;
             }
         }
     </style>
@@ -1327,26 +1382,6 @@
                                     <label for="chandaNotes" class="form-label">Notes</label>
                                     <textarea class="form-control" id="chandaNotes" rows="2" placeholder="Additional notes (optional)"></textarea>
                                 </div>
-                                
-                                <!-- Receipt Background Options -->
-                                <div class="mb-3">
-                                    <label class="form-label">Receipt Background</label>
-                                    <div class="receipt-background-options">
-                                        <div class="receipt-bg-option" data-bg="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Background 1">
-                                        </div>
-                                        <div class="receipt-bg-option" data-bg="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Background 2">
-                                        </div>
-                                        <div class="receipt-bg-option" data-bg="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Background 3">
-                                        </div>
-                                        <div class="receipt-bg-option" data-bg="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                                            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Background 4">
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-plus me-2"></i> Add Collection
                                 </button>
@@ -1456,41 +1491,85 @@
                     </div>
                     
                     <div class="mt-4">
-                        <div class="receipt-preview-container" id="receiptPreviewContainer" style="display: none;">
-                            <div class="receipt-preview" id="receiptPreview">
-                                <div class="receipt-header">
-                                    <h2>Masjid Receipt</h2>
-                                    <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+                        <div class="islamic-receipt" id="chandaReceipt" style="display: none;">
+                            <div class="islamic-receipt-header">
+                                <h2>चंदा रसीद / CHANDA RECEIPT</h2>
+                                <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+                            </div>
+                            
+                            <div class="islamic-receipt-masjid-info">
+                                <h3 id="receiptMasjidName">मस्जिद का नाम / MASJID NAME</h3>
+                                <p id="receiptMasjidAddress">मस्जिद का पता / MASJID ADDRESS</p>
+                            </div>
+                            
+                            <div class="islamic-receipt-content">
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">रसीद नंबर / Receipt No.</div>
+                                    <div class="islamic-receipt-value" id="receiptNumber">-</div>
                                 </div>
-                                
-                                <div class="receipt-content">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <p><strong>Donor Name:</strong> <span id="receiptDonorName">-</span></p>
-                                            <p><strong>Date:</strong> <span id="receiptDate">-</span></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p><strong>Amount:</strong> ₹<span id="receiptAmount">0.00</span></p>
-                                            <p><strong>Purpose:</strong> <span id="receiptPurpose">-</span></p>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3">
-                                        <div class="col-md-12">
-                                            <p><strong>Collector:</strong> <span id="receiptCollector">-</span></p>
-                                            <p><strong>Notes:</strong> <span id="receiptNotes">-</span></p>
-                                        </div>
-                                    </div>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">तिथि / Date</div>
+                                    <div class="islamic-receipt-value" id="receiptDate">-</div>
                                 </div>
-                                
-                                <div class="receipt-footer">
-                                    <p>Thank you for your contribution!</p>
-                                    <p id="receiptQrCode"></p>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">दाता का नाम / Donor Name</div>
+                                    <div class="islamic-receipt-value" id="receiptDonorName">-</div>
+                                </div>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">पता / Address</div>
+                                    <div class="islamic-receipt-value" id="receiptDonorAddress">-</div>
+                                </div>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">फोन नंबर / Phone</div>
+                                    <div class="islamic-receipt-value" id="receiptDonorPhone">-</div>
+                                </div>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">उद्देश्य / Purpose</div>
+                                    <div class="islamic-receipt-value" id="receiptPurpose">-</div>
+                                </div>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">एकत्रित करने वाला / Collector</div>
+                                    <div class="islamic-receipt-value" id="receiptCollector">-</div>
+                                </div>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">राशि (अंकों में) / Amount (in figures)</div>
+                                    <div class="islamic-receipt-value islamic-receipt-amount" id="receiptAmount">₹0.00</div>
+                                </div>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">राशि (शब्दों में) / Amount (in words)</div>
+                                    <div class="islamic-receipt-value" id="receiptAmountInWords">Zero Rupees Only</div>
+                                </div>
+                                <div class="islamic-receipt-row">
+                                    <div class="islamic-receipt-label">टिप्पणियाँ / Notes</div>
+                                    <div class="islamic-receipt-value" id="receiptNotes">-</div>
                                 </div>
                             </div>
                             
-                            <div class="text-center mt-3">
+                            <div class="islamic-receipt-amount-words" id="receiptQrCode"></div>
+                            
+                            <div class="islamic-receipt-footer">
+                                <p>यह रसीद केवल आपके द्वारा दिए गए चंदा के लिए है।</p>
+                                <p>This receipt is only for the chanda given by you.</p>
+                                <p>धन्यवाद / Thank You</p>
+                            </div>
+                            
+                            <div class="islamic-receipt-seal">
+                                <div class="islamic-receipt-seal-left">
+                                    <div class="islamic-receipt-seal-line"></div>
+                                    <p>दाता के हस्ताक्षर / Donor's Signature</p>
+                                </div>
+                                <div class="islamic-receipt-seal-right">
+                                    <div class="islamic-receipt-seal-line"></div>
+                                    <p>मस्जिद प्रबंधन की मुहर / Masjid Management Seal</p>
+                                </div>
+                            </div>
+                            
+                            <div class="islamic-receipt-actions">
                                 <button class="btn btn-primary" id="downloadReceiptImage">
                                     <i class="fas fa-download me-2"></i> Download as Image
+                                </button>
+                                <button class="btn btn-success" id="shareReceiptWhatsApp">
+                                    <i class="fab fa-whatsapp me-2"></i> Share on WhatsApp
                                 </button>
                             </div>
                         </div>
@@ -1515,7 +1594,7 @@
                         </div>
                         
                         <div class="text-center mt-4">
-                            <button class="btn btn-primary" id="sendWhatsAppAlerts">
+                            <button class="btn btn-success" id="sendWhatsAppAlerts">
                                 <i class="fab fa-whatsapp me-2"></i> Send WhatsApp Alerts
                             </button>
                             <button class="btn btn-outline-primary ms-2" id="refreshPendingChanda">
@@ -1528,9 +1607,9 @@
                         <h6>WhatsApp Message Preview</h6>
                         <div class="whatsapp-preview">
                             <div class="whatsapp-message">
-                                <p id="whatsappMessagePreview">प्रिय [नाम],</p>
+                                <p id="whatsappMessagePreview">अस्सलामवलैकुम [नाम],</p>
                                 <p>आपका मासिक चंदा ₹[राशि] अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।</p>
-                                <p>धन्यवाद,<br>[मस्जिद का नाम]</p>
+                                <p>शुक्रिया,<br>[मस्जिद का नाम]</p>
                                 <div class="whatsapp-timestamp">Today, 10:30 AM</div>
                             </div>
                         </div>
@@ -2047,27 +2126,19 @@
                 }
             });
             
-            // Receipt background options
-            document.querySelectorAll('.receipt-bg-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    document.querySelectorAll('.receipt-bg-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    this.classList.add('selected');
-                    
-                    const bgImage = this.getAttribute('data-bg');
-                    document.getElementById('receiptPreview').style.backgroundImage = `url('${bgImage}')`;
-                });
-            });
-            
             // Generate receipt preview
             document.getElementById('generateReceiptPreview').addEventListener('click', function() {
-                generateReceiptPreview();
+                generateChandaReceipt();
             });
             
             // Download receipt image
             document.getElementById('downloadReceiptImage').addEventListener('click', function() {
                 downloadReceiptAsImage();
+            });
+            
+            // Share receipt on WhatsApp
+            document.getElementById('shareReceiptWhatsApp').addEventListener('click', function() {
+                shareReceiptOnWhatsApp();
             });
             
             // Refresh pending chanda
@@ -4085,10 +4156,10 @@
             return labels[purpose] || purpose;
         }
         
-        // Generate receipt preview
-        function generateReceiptPreview() {
+        // Generate chanda receipt
+        function generateChandaReceipt() {
             const donor = document.getElementById('chandaDonor').value;
-            const amount = document.getElementById('chandaAmount').value;
+            const amount = parseFloat(document.getElementById('chandaAmount').value);
             const date = document.getElementById('chandaDate').value;
             const collectorId = document.getElementById('chandaCollector').value;
             const purpose = document.getElementById('chandaPurpose').value;
@@ -4102,16 +4173,25 @@
             const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
             const collector = committeeMembers.find(m => m.id == collectorId);
             
-            // Update receipt preview
-            document.getElementById('receiptDonorName').textContent = donor;
+            // Get masjid info
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
+            // Update receipt details
+            document.getElementById('receiptNumber').textContent = 'RCPT-' + Date.now();
             document.getElementById('receiptDate').textContent = formatDate(date);
-            document.getElementById('receiptAmount').textContent = parseFloat(amount).toFixed(2);
+            document.getElementById('receiptDonorName').textContent = donor;
+            document.getElementById('receiptDonorAddress').textContent = '-';
+            document.getElementById('receiptDonorPhone').textContent = '-';
             document.getElementById('receiptPurpose').textContent = getChandaPurposeLabel(purpose);
             document.getElementById('receiptCollector').textContent = collector ? collector.name : '-';
+            document.getElementById('receiptAmount').textContent = '₹' + amount.toFixed(2);
+            document.getElementById('receiptAmountInWords').textContent = numberToWords(amount) + ' Rupees Only';
             document.getElementById('receiptNotes').textContent = notes || '-';
+            document.getElementById('receiptMasjidName').textContent = masjidInfo.name || 'मस्जिद का नाम / MASJID NAME';
+            document.getElementById('receiptMasjidAddress').textContent = masjidInfo.address || 'मस्जिद का पता / MASJID ADDRESS';
             
-            // Show receipt preview
-            document.getElementById('receiptPreviewContainer').style.display = 'block';
+            // Show receipt
+            document.getElementById('chandaReceipt').style.display = 'block';
             
             // Generate QR code
             setTimeout(() => {
@@ -4119,20 +4199,37 @@
                 if (qrCodeContainer) {
                     qrCodeContainer.innerHTML = '';
                     new QRCode(qrCodeContainer, {
-                        text: `Chanda Collection: ${donor}, Amount: ₹${amount}, Date: ${date}`,
+                        text: `Chanda Collection: ${donor}, Amount: ₹${amount.toFixed(2)}, Date: ${date}`,
                         width: 100,
                         height: 100
                     });
                 }
             }, 100);
             
-            // Scroll to receipt preview
-            document.getElementById('receiptPreviewContainer').scrollIntoView({ behavior: 'smooth' });
+            // Scroll to receipt
+            document.getElementById('chandaReceipt').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Convert number to words
+        function numberToWords(num) {
+            const a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '];
+            const b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            
+            if ((num = num.toString()).length > 9) return 'overflow';
+            const n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+            if (!n) return;
+            let str = '';
+            str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+            str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+            str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+            str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+            return str.trim();
         }
         
         // Download receipt as image
         function downloadReceiptAsImage() {
-            const receiptElement = document.getElementById('receiptPreview');
+            const receiptElement = document.getElementById('chandaReceipt');
             
             html2canvas(receiptElement, {
                 scale: 2,
@@ -4145,6 +4242,39 @@
                 link.click();
                 
                 showToast('Receipt downloaded as image', 'success');
+            });
+        }
+        
+        // Share receipt on WhatsApp
+        function shareReceiptOnWhatsApp() {
+            const receiptElement = document.getElementById('chandaReceipt');
+            
+            html2canvas(receiptElement, {
+                scale: 2,
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                // Convert canvas to data URL
+                const imageData = canvas.toDataURL('image/png');
+                
+                // Create a temporary link to download the image
+                const link = document.createElement('a');
+                link.href = imageData;
+                link.download = `chanda-receipt-${new Date().toISOString().split('T')[0]}.png`;
+                
+                // Get donor name and amount for message
+                const donorName = document.getElementById('receiptDonorName').textContent;
+                const amount = document.getElementById('receiptAmount').textContent;
+                
+                // Create WhatsApp message
+                const message = `Dear ${donorName},\n\nThank you for your chanda contribution of ${amount}.\n\nPlease find attached your receipt.\n\n${document.getElementById('receiptMasjidName').textContent}`;
+                
+                // Open WhatsApp with pre-filled message
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                // Show toast
+                showToast('Opening WhatsApp with receipt...', 'success');
             });
         }
         
@@ -4323,102 +4453,30 @@
                 return;
             }
             
-            // Generate receipt image
-            generatePendingChandaReceiptImage(householdName, function(imageData) {
-                // Show WhatsApp modal
-                const modal = new bootstrap.Modal(document.getElementById('whatsappModal'));
-                
-                // Update WhatsApp number select
-                updateWhatsAppNumberSelect(whatsappNumbers);
-                
-                // Update message
-                document.getElementById('whatsappMessage').value = combinedMessage;
-                document.getElementById('whatsappPreviewText').textContent = combinedMessage;
-                
-                // Update image preview
-                const imagePreview = document.getElementById('whatsappImagePreview');
-                imagePreview.innerHTML = `<img src="${imageData}" class="img-fluid" alt="Receipt">`;
-                
-                // Show modal
-                modal.show();
-            });
-        }
-        
-        // Generate pending chanda receipt image
-        function generatePendingChandaReceiptImage(householdName, callback) {
-            // Create a temporary receipt element
-            const receiptElement = document.createElement('div');
-            receiptElement.style.position = 'absolute';
-            receiptElement.style.left = '-9999px';
-            receiptElement.style.width = '400px';
-            receiptElement.style.backgroundColor = 'white';
-            receiptElement.style.padding = '20px';
-            receiptElement.style.fontFamily = 'Montserrat, sans-serif';
+            // If household has a phone number, use it directly
+            if (householdPhone) {
+                const whatsappUrl = `https://wa.me/${householdPhone.replace(/\D/g, '')}?text=${encodeURIComponent(combinedMessage)}`;
+                window.open(whatsappUrl, '_blank');
+                showToast('Opening WhatsApp with reminder message...', 'success');
+                return;
+            }
             
-            // Get masjid info
-            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            // Otherwise, show modal to select from masjid numbers
+            const modal = new bootstrap.Modal(document.getElementById('whatsappModal'));
             
-            // Get current date
-            const now = new Date();
-            const formattedDate = formatDate(now);
+            // Update WhatsApp number select
+            updateWhatsAppNumberSelect(whatsappNumbers);
             
-            // Set receipt content
-            receiptElement.innerHTML = `
-                <div style="text-align: center; margin-bottom: 20px;">
-                    ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
-                    <h2 style="margin: 0; color: #14793b;">${masjidInfo.name || 'Masjid'}</h2>
-                    <div style="font-family: 'Amiri', serif; font-size: 1.2rem; color: #006aff; margin: 5px 0;">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
-                </div>
-                
-                <div style="background-color: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-                    <p style="margin: 5px 0;"><strong>नाम / Name:</strong> ${householdName}</p>
-                    <p style="margin: 5px 0;"><strong>तिथि / Date:</strong> ${formattedDate}</p>
-                    <p style="margin: 5px 0;"><strong>विवरण / Description:</strong> मासिक चंदा / Monthly Chanda</p>
-                    <p style="margin: 5px 0;"><strong>स्थिति / Status:</strong> <span style="color: #dc3545;">बकाया / Pending</span></p>
-                </div>
-                
-                <div style="text-align: center; margin-top: 20px;">
-                    <p style="margin: 0; color: #666; font-size: 0.9rem;">कृपया जल्द से जल्द अपना चंदा जमा करवाएं</p>
-                    <p style="margin: 5px 0; color: #666; font-size: 0.9rem;">Please submit your chanda as soon as possible</p>
-                    <div id="pendingChandaQrCode" style="margin: 15px auto;"></div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #ddd; font-size: 0.8rem; color: #666;">
-                    Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}
-                </div>
-            `;
+            // Update message
+            document.getElementById('whatsappMessage').value = combinedMessage;
+            document.getElementById('whatsappPreviewText').textContent = combinedMessage;
             
-            // Add to body
-            document.body.appendChild(receiptElement);
+            // Update image preview
+            const imagePreview = document.getElementById('whatsappImagePreview');
+            imagePreview.innerHTML = `<p class="text-muted">No image attached</p>`;
             
-            // Generate QR code
-            setTimeout(() => {
-                const qrCodeContainer = document.getElementById('pendingChandaQrCode');
-                if (qrCodeContainer) {
-                    qrCodeContainer.innerHTML = '';
-                    new QRCode(qrCodeContainer, {
-                        text: `Pending Chanda: ${householdName}, Date: ${formattedDate}`,
-                        width: 100,
-                        height: 100
-                    });
-                }
-                
-                // Convert to image
-                html2canvas(receiptElement, {
-                    scale: 2,
-                    logging: false,
-                    useCORS: true
-                }).then(canvas => {
-                    // Remove temporary element
-                    document.body.removeChild(receiptElement);
-                    
-                    // Get image data
-                    const imageData = canvas.toDataURL('image/png');
-                    
-                    // Callback with image data
-                    callback(imageData);
-                });
-            }, 100);
+            // Show modal
+            modal.show();
         }
         
         // Mark as paid
