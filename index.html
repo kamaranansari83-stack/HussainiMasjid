@@ -4438,9 +4438,9 @@
             const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
             
             // Create message in Hindi and English
-            const hindiMessage = `प्रिय ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nधन्यवाद,\n${masjidInfo.name || 'मस्जिद'}`;
+            const hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
             
-            const englishMessage = `Dear ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            const englishMessage = `Assalamwalaikum ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
             
             // Combine messages
             const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}`;
