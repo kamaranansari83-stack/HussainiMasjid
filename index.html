@@ -4861,29 +4861,29 @@
             // Get masjid info
             const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
             
-            // Create message in Hindi and English
-            let hindiMessage, englishMessage, subject;
-            
-            if (chandaType === 'monthly') {
-                subject = 'मासिक चंदा / Monthly Chanda';
-                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।`;
-                englishMessage = `Assalamwalaikum ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.`;
-            } else if (chandaType === 'imam') {
-                subject = 'इमाम साहब की सैलरी / Imam Sahab Salary';
-                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nइमाम साहब की सैलरी के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।`;
-                englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for Imam Sahab's salary is still pending. Please submit it as soon as possible.`;
-            } else if (chandaType === 'festival') {
-                subject = 'त्योहार चंदा / Festival Chanda';
-                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nत्योहार चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।`;
-                englishMessage = `Assalamwalaikum ${householdName},\n\nYour festival chanda is still pending. Please submit it as soon as possible.`;
-            } else if (chandaType === 'construction') {
-                subject = 'निर्माण चंदा / Construction Chanda';
-                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nमस्जिद के निर्माण के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।`;
-                englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for masjid construction is still pending. Please submit it as soon as possible.`;
-            }
-            
-            const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
-            
+           // Create message in Hindi and English
+let hindiMessage, englishMessage, subject;
+
+if (chandaType === 'monthly') {
+    subject = 'मासिक चंदा / Monthly Chanda';
+    hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+    englishMessage = `Assalamwalaikum ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+} else if (chandaType === 'imam') {
+    subject = 'इमाम साहब की सैलरी / Imam Sahab Salary';
+    hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nइमाम साहब की सैलरी के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+    englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for Imam Sahab's salary is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+} else if (chandaType === 'festival') {
+    subject = 'त्योहार चंदा / Festival Chanda';
+    hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nत्योहार चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+    englishMessage = `Assalamwalaikum ${householdName},\n\nYour festival chanda is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+} else if (chandaType === 'construction') {
+    subject = 'निर्माण चंदा / Construction Chanda';
+    hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nमस्जिद के निर्माण के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+    englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for masjid construction is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+}
+
+const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}`;
+
             // Get WhatsApp numbers
             const whatsappNumbers = masjidInfo.whatsappNumbers || [];
             
