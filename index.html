@@ -6924,6 +6924,337 @@ function generateFinancialReport(format = 'pdf') {
     const modal = new bootstrap.Modal(document.getElementById('previewModal'));
     modal.show();
 }
+// चंदा संग्रह जोड़ने वाला फ़ंक्शन संशोधित करें
+function addChandaCollection() {
+    const donor = document.getElementById('chandaDonor').value;
+    const amount = parseFloat(document.getElementById('chandaAmount').value);
+    const date = document.getElementById('chandaDate').value;
+    const collectorId = document.getElementById('chandaCollector').value;
+    const purpose = document.getElementById('chandaPurpose').value;
+    const notes = document.getElementById('chandaNotes').value;
+    
+    if (!donor || !amount || amount <= 0 || !date || !collectorId) {
+        showToast('Please fill all required fields with valid values', 'error');
+        return;
+    }
+    
+    // यदि प्रयोजन "निर्माण" है, तो इसे निर्माण दान के रूप में संभालें
+    if (purpose === 'construction') {
+        const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+        
+        const newDonation = {
+            id: Date.now(),
+            householdId: null,  // चंदा संग्रह में घराना आईडी नहीं है
+            householdName: donor,  // दाता का नाम घराने के नाम के रूप में उपयोग करें
+            memberId: null,
+            memberName: null,
+            amount,
+            date,
+            receipt: null
+        };
+        
+        constructionDonations.push(newDonation);
+        localStorage.setItem('constructionDonations', JSON.stringify(constructionDonations));
+        
+        updateConstructionDonationsTable(constructionDonations);
+        updateConstructionDonationsTotal(constructionDonations);
+        
+        const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
+        updateConstructionBudgetSummary(constructionDonations, constructionExpenses);
+        updateSummarySection();
+        
+        document.getElementById('chandaForm').reset();
+        setCurrentDate();
+        showToast('Construction chanda added successfully!', 'success');
+        return;
+    }
+    
+    // अन्य सभी प्रकार के चंदा के लिए सामान्य प्रक्रिया
+    const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+    const newCollection = {
+        id: Date.now(),
+        donor,
+        amount,
+        date,
+        collectorId: parseInt(collectorId),
+        purpose,
+        notes
+    };
+    
+    chandaCollections.push(newCollection);
+    localStorage.setItem('chandaCollections', JSON.stringify(chandaCollections));
+    
+    updateChandaTable(chandaCollections);
+    updateChandaSummary(chandaCollections);
+    updateSummarySection();
+    
+    document.getElementById('chandaForm').reset();
+    setCurrentDate();
+    showToast('Chanda collection added successfully!', 'success');
+}
+
+// सारांश अनुभाग को अपडेट करने वाला फ़ंक्शन संशोधित करें
+function updateSummarySection() {
+    // सभी वित्तीय डेटा प्राप्त करें
+    const donations = JSON.parse(localStorage.getItem('donations')) || [];
+    const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+    const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
+    const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+    
+    // कुल योग की गणना करें
+    const jummaCollection = donations
+        .filter(d => d.type === 'jumma')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const monthlyChanda = donations
+        .filter(d => d.type === 'monthly')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const generalDonations = donations
+        .filter(d => d.type === 'general')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const imamSalary = donations
+        .filter(d => d.type === 'imam')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const festivalChanda = donations
+        .filter(d => d.type === 'festival')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const constructionDonationsTotal = constructionDonations
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    // चंदा संग्रह से केवल गैर-निर्माण चंदा शामिल करें
+    const chandaCollectionsTotal = chandaCollections
+        .filter(c => c.purpose !== 'construction')
+        .reduce((sum, c) => sum + c.amount, 0);
+    
+    const totalIncome = jummaCollection + monthlyChanda + generalDonations + imamSalary + festivalChanda + constructionDonationsTotal + chandaCollectionsTotal;
+    
+    const totalExpenses = constructionExpenses
+        .reduce((sum, e) => sum + e.amount, 0);
+    
+    const totalBalance = totalIncome - totalExpenses;
+    
+    // सारांश प्रदर्शन अपडेट करें
+    document.getElementById('summaryJummaCollection').textContent = jummaCollection.toFixed(2);
+    document.getElementById('summaryMonthlyChanda').textContent = monthlyChanda.toFixed(2);
+    document.getElementById('summaryGeneralDonations').textContent = generalDonations.toFixed(2);
+    document.getElementById('summaryImamSalary').textContent = imamSalary.toFixed(2);
+    document.getElementById('summaryFestivalChanda').textContent = festivalChanda.toFixed(2);
+    document.getElementById('summaryConstructionDonations').textContent = constructionDonationsTotal.toFixed(2);
+    document.getElementById('summaryChandaCollections').textContent = chandaCollectionsTotal.toFixed(2);
+    document.getElementById('summaryTotalIncome').textContent = totalIncome.toFixed(2);
+    document.getElementById('summaryConstructionExpenses').textContent = totalExpenses.toFixed(2);
+    document.getElementById('summaryTotalExpenses').textContent = totalExpenses.toFixed(2);
+    document.getElementById('summaryTotalBalance').textContent = totalBalance.toFixed(2);
+    
+    // मूल्य के आधार पर शेष रंग अपडेट करें
+    const balanceElement = document.getElementById('summaryTotalBalance').parentElement;
+    if (totalBalance < 0) {
+        balanceElement.className = 'summary-item balance negative';
+    } else {
+        balanceElement.className = 'summary-item balance positive';
+    }
+}
+
+// चंदा सारांश अपडेट करने वाला फ़ंक्शन संशोधित करें
+function updateChandaSummary(collections) {
+    const summary = {
+        general: { total: 0, count: 0 },
+        maintenance: { total: 0, count: 0 },
+        education: { total: 0, count: 0 },
+        charity: { total: 0, count: 0 },
+        other: { total: 0, count: 0 },
+        construction: { total: 0, count: 0 }  // यह अब चंदा सारांश में शामिल नहीं होगा
+    };
+    
+    // केवल गैर-निर्माण चंदा शामिल करें
+    collections.filter(c => c.purpose !== 'construction').forEach(collection => {
+        summary[collection.purpose].total += collection.amount;
+        summary[collection.purpose].count += 1;
+    });
+    
+    const tableBody = document.getElementById('chandaSummaryTable');
+    const rows = tableBody.querySelectorAll('tr');
+    
+    // व्यक्तिगत पंक्तियां अपडेट करें
+    rows[0].cells[1].textContent = summary.general.total.toFixed(2);
+    rows[0].cells[2].textContent = summary.general.count;
+    
+    rows[1].cells[1].textContent = summary.maintenance.total.toFixed(2);
+    rows[1].cells[2].textContent = summary.maintenance.count;
+    
+    rows[2].cells[1].textContent = summary.education.total.toFixed(2);
+    rows[2].cells[2].textContent = summary.education.count;
+    
+    rows[3].cells[1].textContent = summary.charity.total.toFixed(2);
+    rows[3].cells[2].textContent = summary.charity.count;
+    
+    rows[4].cells[1].textContent = summary.other.total.toFixed(2);
+    rows[4].cells[2].textContent = summary.other.count;
+    
+    // निर्माण पंक्ति को छुपाएं या अक्षम करें
+    rows[5].style.display = 'none';
+    
+    // कुल पंक्ति अपडेट करें
+    const totalAmount = Object.values(summary).reduce((sum, item) => sum + item.total, 0);
+    const totalCount = Object.values(summary).reduce((sum, item) => sum + item.count, 0);
+    
+    rows[6].cells[1].textContent = totalAmount.toFixed(2);
+    rows[6].cells[2].textContent = totalCount;
+}
+
+// चंदा रिपोर्ट जनरेट करने वाला फ़ंक्शन संशोधित करें
+function generateChandaReport(purpose, format = 'pdf') {
+    const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+    const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
+    
+    let filteredCollections = chandaCollections;
+    let reportTitle = 'All Chanda Collections Report';
+    
+    if (purpose !== 'all') {
+        // यदि प्रयोजन "निर्माण" है, तो निर्माण दान से डेटा प्राप्त करें
+        if (purpose === 'construction') {
+            const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+            filteredCollections = constructionDonations.map(d => ({
+                id: d.id,
+                donor: d.householdName,
+                amount: d.amount,
+                date: d.date,
+                purpose: 'construction',
+                collectorId: d.memberId,
+                collectorName: d.memberName
+            }));
+        } else {
+            filteredCollections = chandaCollections.filter(c => c.purpose === purpose);
+        }
+        reportTitle = `${getChandaPurposeLabel(purpose)} Report`;
+    } else {
+        // सभी चंदा के लिए, निर्माण चंदा को छोड़कर सभी शामिल करें
+        filteredCollections = chandaCollections.filter(c => c.purpose !== 'construction');
+        
+        // निर्माण दान भी शामिल करें
+        const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+        const constructionChanda = constructionDonations.map(d => ({
+            id: d.id,
+            donor: d.householdName,
+            amount: d.amount,
+            date: d.date,
+            purpose: 'construction',
+            collectorId: d.memberId,
+            collectorName: d.memberName
+        }));
+        
+        filteredCollections = [...filteredCollections, ...constructionChanda];
+    }
+    
+    if (filteredCollections.length === 0) {
+        showToast(`No ${purpose === 'all' ? '' : purpose + ' '}chanda collections found`, 'error');
+        return;
+    }
+    
+    const totalAmount = filteredCollections.reduce((sum, collection) => sum + collection.amount, 0);
+    
+    // मस्जिद जानकारी पीडीएफ हेडर के लिए प्राप्त करें
+    const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+    
+    let content = `
+        <div class="islamic-pdf-header">
+            ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+            <h2>${masjidInfo.name || 'Masjid'} ${reportTitle}</h2>
+            <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+        </div>
+        
+        <div class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Total Collections:</strong> ${filteredCollections.length}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Total Amount:</strong> ₹${totalAmount.toFixed(2)}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Donor</th>
+                        <th>Amount (₹)</th>
+                        <th>Purpose</th>
+                        <th>Collector</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    // दिनांक के अनुसार संग्रह क्रमबद्ध करें (नवीनतम पहले)
+    const sortedCollections = [...filteredCollections].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    sortedCollections.forEach(collection => {
+        const collector = collection.collectorId ? 
+            (committeeMembers.find(m => m.id === collection.collectorId) || 
+            (collection.collectorName ? { name: collection.collectorName } : null)) : null;
+        
+        content += `
+            <tr>
+                <td>${formatDate(collection.date)}</td>
+                <td>${collection.donor}</td>
+                <td>₹${collection.amount.toFixed(2)}</td>
+                <td>${getChandaPurposeLabel(collection.purpose)}</td>
+                <td>${collector ? collector.name : '-'}</td>
+            </tr>
+        `;
+    });
+    
+    content += `
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mb-4 text-center">
+            <div id="chandaReportQrCode"></div>
+        </div>
+        
+        <div class="islamic-pdf-footer">
+            <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
+        </div>
+    `;
+    
+    document.getElementById('previewContent').innerHTML = content;
+    
+    // क्यूआर कोड जनरेट करें
+    setTimeout(() => {
+        const qrCodeContainer = document.getElementById('chandaReportQrCode');
+        if (qrCodeContainer) {
+            qrCodeContainer.innerHTML = '';
+            new QRCode(qrCodeContainer, {
+                text: `${reportTitle}: ${filteredCollections.length} collections, Total: ₹${totalAmount.toFixed(2)}`,
+                width: 128,
+                height: 128
+            });
+        }
+    }, 100);
+    
+    const modal = new bootstrap.Modal(document.getElementById('previewModal'));
+    modal.show();
+    
+    // चयनित प्रारूप में डाउनलोड करें
+    if (format === 'pdf') {
+        setTimeout(() => {
+            downloadPdf(document.getElementById('previewContent'));
+        }, 500);
+    } else if (format === 'image') {
+        setTimeout(() => {
+            downloadImage(document.getElementById('previewContent'));
+        }, 500);
+    }
+}
+
 
     </script>
 </body>
