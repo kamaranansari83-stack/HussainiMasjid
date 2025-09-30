@@ -771,6 +771,45 @@
             gap: 5px;
         }
         
+        /* QR Code Upload Styles */
+        .qr-code-upload {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .qr-code-preview {
+            width: 150px;
+            height: 150px;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            background-color: #f9f9f9;
+            overflow: hidden;
+        }
+        
+        .qr-code-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Individual Reminder Image Styles */
+        .reminder-image-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .reminder-image-preview {
+            max-width: 100%;
+            max-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
         @media (max-width: 768px) {
             .navbar-brand {
                 font-size: 1.5rem;
@@ -1745,6 +1784,20 @@
                         <h3>किसका किसका चंदा बाकी है?</h3>
                         <p class="text-center mb-3">उन सभी लोगों की सूची जिन्होंने अभी तक चंदा नहीं दिया है</p>
                         
+                        <!-- QR Code Upload Section -->
+                        <div class="qr-code-upload">
+                            <h6><i class="fas fa-qrcode me-2"></i> मस्जिद QR कोड अपलोड करें</h6>
+                            <div class="qr-code-preview" id="qrCodePreview">
+                                <i class="fas fa-qrcode fa-3x text-muted"></i>
+                            </div>
+                            <div class="file-upload">
+                                <input type="file" id="qrCodeUpload" accept="image/*">
+                                <label for="qrCodeUpload" class="file-upload-label">
+                                    <i class="fas fa-upload me-2"></i> QR कोड अपलोड करें
+                                </label>
+                            </div>
+                        </div>
+                        
                         <div class="mb-3">
                             <label for="pendingChandaType" class="form-label">Select Chanda Type</label>
                             <select class="form-select" id="pendingChandaType">
@@ -1778,6 +1831,21 @@
                                 <p>शुक्रिया,<br>[मस्जिद का नाम]</p>
                                 <div class="whatsapp-timestamp">Today, 10:30 AM</div>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Individual Reminder Image Section -->
+                    <div class="reminder-image-container" id="reminderImageContainer" style="display: none;">
+                        <h6>व्यक्तिगत अनुस्मारक छवि</h6>
+                        <p class="text-muted">इस छवि को डाउनलोड करें और WhatsApp पर साझा करें</p>
+                        <img id="reminderImagePreview" class="reminder-image-preview" alt="Reminder Image">
+                        <div class="mt-3">
+                            <button class="btn btn-primary" id="downloadReminderImage">
+                                <i class="fas fa-download me-2"></i> Download Image
+                            </button>
+                            <button class="btn btn-success ms-2" id="shareReminderWhatsApp">
+                                <i class="fab fa-whatsapp me-2"></i> Share on WhatsApp
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -2184,6 +2252,26 @@
                 }
             });
             
+            // QR Code upload
+            const qrCodeUpload = document.getElementById('qrCodeUpload');
+            qrCodeUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('qrCodePreview').innerHTML = `<img src="${e.target.result}" alt="QR Code">`;
+                        
+                        // Save QR code to localStorage
+                        const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+                        masjidInfo.qrCode = e.target.result;
+                        localStorage.setItem('masjidInfo', JSON.stringify(masjidInfo));
+                        
+                        showToast('QR Code uploaded successfully!', 'success');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
             // Reset Masjid Info
             document.getElementById('resetMasjidInfo').addEventListener('click', function() {
                 document.getElementById('masjidInfoForm').reset();
@@ -2369,6 +2457,35 @@
             document.getElementById('donationHousehold').addEventListener('change', function() {
                 updateDonationMemberField();
             });
+            
+            // Download reminder image
+            document.getElementById('downloadReminderImage').addEventListener('click', function() {
+                const reminderImage = document.getElementById('reminderImagePreview');
+                const link = document.createElement('a');
+                link.download = `chanda-reminder-${new Date().toISOString().split('T')[0]}.png`;
+                link.href = reminderImage.src;
+                link.click();
+                
+                showToast('Reminder image downloaded', 'success');
+            });
+            
+            // Share reminder on WhatsApp
+            document.getElementById('shareReminderWhatsApp').addEventListener('click', function() {
+                const reminderImage = document.getElementById('reminderImagePreview');
+                
+                // Get household name and amount for message
+                const householdName = document.getElementById('reminderImagePreview').getAttribute('data-household-name') || '';
+                const chandaType = document.getElementById('reminderImagePreview').getAttribute('data-chanda-type') || '';
+                
+                // Create WhatsApp message
+                const message = `Dear ${householdName},\n\nPlease find attached your ${chandaType} reminder.\n\n${document.getElementById('receiptMasjidName').textContent}`;
+                
+                // Open WhatsApp with pre-filled message
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                
+                showToast('Opening WhatsApp with reminder image...', 'success');
+            });
         }
         
         // Load data from localStorage
@@ -2378,6 +2495,7 @@
             if (masjidInfo.name) document.getElementById('masjidName').value = masjidInfo.name;
             if (masjidInfo.address) document.getElementById('masjidAddress').value = masjidInfo.address;
             if (masjidInfo.logo) document.getElementById('logoPreview').innerHTML = `<img src="${masjidInfo.logo}" alt="Masjid Logo">`;
+            if (masjidInfo.qrCode) document.getElementById('qrCodePreview').innerHTML = `<img src="${masjidInfo.qrCode}" alt="QR Code">`;
             
             // Load WhatsApp numbers
             if (masjidInfo.whatsappNumbers) {
@@ -2972,6 +3090,8 @@
             const address = document.getElementById('masjidAddress').value;
             const logoImg = document.querySelector('#logoPreview img');
             const logo = logoImg ? logoImg.src : null;
+            const qrCodeImg = document.querySelector('#qrCodePreview img');
+            const qrCode = qrCodeImg ? qrCodeImg.src : null;
             
             // Get WhatsApp numbers
             const whatsappNumbers = [
@@ -2980,7 +3100,7 @@
                 document.getElementById('whatsappNumber3').value
             ].filter(num => num.trim() !== '');
             
-            const masjidInfo = { name, address, logo, whatsappNumbers };
+            const masjidInfo = { name, address, logo, qrCode, whatsappNumbers };
             localStorage.setItem('masjidInfo', JSON.stringify(masjidInfo));
             
             // Update WhatsApp number select
@@ -4606,11 +4726,33 @@
         function downloadReceiptAsImage() {
             const receiptElement = document.getElementById('chandaReceipt');
             
-            html2canvas(receiptElement, {
+            // Create a temporary clone of the receipt element
+            const receiptClone = receiptElement.cloneNode(true);
+            
+            // Remove the action buttons from the clone
+            const actionsElement = receiptClone.querySelector('.islamic-receipt-actions');
+            if (actionsElement) {
+                actionsElement.remove();
+            }
+            
+            // Create a temporary container for the clone
+            const tempContainer = document.createElement('div');
+            tempContainer.style.position = 'absolute';
+            tempContainer.style.left = '-9999px';
+            tempContainer.appendChild(receiptClone);
+            document.body.appendChild(tempContainer);
+            
+            // Use html2canvas to capture the receipt
+            html2canvas(receiptClone, {
                 scale: 2,
                 logging: false,
-                useCORS: true
+                useCORS: true,
+                backgroundColor: null
             }).then(canvas => {
+                // Remove the temporary container
+                document.body.removeChild(tempContainer);
+                
+                // Create a download link
                 const link = document.createElement('a');
                 link.download = `chanda-receipt-${new Date().toISOString().split('T')[0]}.png`;
                 link.href = canvas.toDataURL('image/png');
@@ -4624,18 +4766,34 @@
         function shareReceiptOnWhatsApp() {
             const receiptElement = document.getElementById('chandaReceipt');
             
-            html2canvas(receiptElement, {
+            // Create a temporary clone of the receipt element
+            const receiptClone = receiptElement.cloneNode(true);
+            
+            // Remove the action buttons from the clone
+            const actionsElement = receiptClone.querySelector('.islamic-receipt-actions');
+            if (actionsElement) {
+                actionsElement.remove();
+            }
+            
+            // Create a temporary container for the clone
+            const tempContainer = document.createElement('div');
+            tempContainer.style.position = 'absolute';
+            tempContainer.style.left = '-9999px';
+            tempContainer.appendChild(receiptClone);
+            document.body.appendChild(tempContainer);
+            
+            // Use html2canvas to capture the receipt
+            html2canvas(receiptClone, {
                 scale: 2,
                 logging: false,
-                useCORS: true
+                useCORS: true,
+                backgroundColor: null
             }).then(canvas => {
+                // Remove the temporary container
+                document.body.removeChild(tempContainer);
+                
                 // Convert canvas to data URL
                 const imageData = canvas.toDataURL('image/png');
-                
-                // Create a temporary link to download the image
-                const link = document.createElement('a');
-                link.href = imageData;
-                link.download = `chanda-receipt-${new Date().toISOString().split('T')[0]}.png`;
                 
                 // Get donor name and amount for message
                 const donorName = document.getElementById('receiptDonorName').textContent;
@@ -4802,6 +4960,9 @@
                                 <button class="btn btn-sm btn-success send-whatsapp-reminder" data-id="${household.id}" data-name="${household.name}" data-phone="${household.phone || ''}" data-type="${chandaType}">
                                     <i class="fab fa-whatsapp"></i>
                                 </button>
+                                <button class="btn btn-sm btn-primary create-reminder-image" data-id="${household.id}" data-name="${household.name}" data-phone="${household.phone || ''}" data-type="${chandaType}">
+                                    <i class="fas fa-image"></i>
+                                </button>
                                 <button class="btn btn-sm btn-primary mark-as-paid" data-id="${household.id}" data-name="${household.name}" data-type="${chandaType}">
                                     <i class="fas fa-check"></i>
                                 </button>
@@ -4820,6 +4981,16 @@
                     const householdPhone = this.getAttribute('data-phone');
                     const chandaType = this.getAttribute('data-type');
                     sendWhatsAppReminder(householdId, householdName, householdPhone, chandaType);
+                });
+            });
+            
+            document.querySelectorAll('.create-reminder-image').forEach(button => {
+                button.addEventListener('click', function() {
+                    const householdId = this.getAttribute('data-id');
+                    const householdName = this.getAttribute('data-name');
+                    const householdPhone = this.getAttribute('data-phone');
+                    const chandaType = this.getAttribute('data-type');
+                    createReminderImage(householdId, householdName, householdPhone, chandaType);
                 });
             });
             
@@ -4856,34 +5027,143 @@
             return labels[type] || type;
         }
         
+        // Create reminder image
+        function createReminderImage(householdId, householdName, householdPhone, chandaType) {
+            // Get masjid info
+            const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+            
+            // Create a temporary container for the reminder image
+            const tempContainer = document.createElement('div');
+            tempContainer.style.position = 'absolute';
+            tempContainer.style.left = '-9999px';
+            tempContainer.style.width = '400px';
+            tempContainer.style.backgroundColor = 'white';
+            tempContainer.style.padding = '20px';
+            tempContainer.style.fontFamily = 'Amiri, serif';
+            tempContainer.style.color = '#333';
+            tempContainer.style.border = '2px solid #14793b';
+            tempContainer.style.borderRadius = '10px';
+            
+            // Create the reminder content
+            const chandaTypeLabel = getChandaTypeLabel(chandaType);
+            const currentDate = new Date().toLocaleDateString('en-IN');
+            
+            let hindiMessage, englishMessage;
+            
+            if (chandaType === 'monthly') {
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            } else if (chandaType === 'imam') {
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nइमाम साहब की सैलरी के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for Imam Sahab's salary is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            } else if (chandaType === 'festival') {
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nत्योहार चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour festival chanda is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            } else if (chandaType === 'construction') {
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nमस्जिद के निर्माण के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for masjid construction is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            }
+            
+            tempContainer.innerHTML = `
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <h2 style="color: #14793b; margin: 0; font-size: 1.5rem;">${masjidInfo.name || 'मस्जिद'}</h2>
+                    <div style="font-size: 1.2rem; color: #ff00e6; margin: 5px 0;">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <p style="margin: 0 0 5px; font-weight: bold;">तिथि / Date:</p>
+                    <p style="margin: 0;">${currentDate}</p>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <p style="margin: 0 0 5px; font-weight: bold;">नाम / Name:</p>
+                    <p style="margin: 0;">${householdName}</p>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <p style="margin: 0 0 5px; font-weight: bold;">फोन नंबर / Phone:</p>
+                    <p style="margin: 0;">${householdPhone || '-'}</p>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <p style="margin: 0 0 5px; font-weight: bold;">चंदा प्रकार / Chanda Type:</p>
+                    <p style="margin: 0;">${chandaTypeLabel}</p>
+                </div>
+                
+                <div style="margin-bottom: 15px; text-align: center;">
+                    ${masjidInfo.qrCode ? `<img src="${masjidInfo.qrCode}" alt="QR Code" style="max-width: 150px; max-height: 150px;">` : ''}
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <p style="margin: 0; white-space: pre-line;">${hindiMessage}</p>
+                </div>
+                
+                <div style="margin-bottom: 15px; border-top: 1px dashed #ccc; padding-top: 15px;">
+                    <p style="margin: 0; white-space: pre-line; font-style: italic;">${englishMessage}</p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">
+                    <p>Generated on ${currentDate} | ${masjidInfo.name || 'Masjid Management System'}</p>
+                </div>
+            `;
+            
+            document.body.appendChild(tempContainer);
+            
+            // Use html2canvas to capture the reminder image
+            html2canvas(tempContainer, {
+                scale: 2,
+                logging: false,
+                useCORS: true,
+                backgroundColor: null
+            }).then(canvas => {
+                // Remove the temporary container
+                document.body.removeChild(tempContainer);
+                
+                // Show the reminder image
+                const reminderImageContainer = document.getElementById('reminderImageContainer');
+                const reminderImagePreview = document.getElementById('reminderImagePreview');
+                
+                reminderImagePreview.src = canvas.toDataURL('image/png');
+                reminderImagePreview.setAttribute('data-household-name', householdName);
+                reminderImagePreview.setAttribute('data-chanda-type', chandaTypeLabel);
+                
+                reminderImageContainer.style.display = 'block';
+                
+                // Scroll to the reminder image
+                reminderImageContainer.scrollIntoView({ behavior: 'smooth' });
+                
+                showToast('Reminder image created successfully', 'success');
+            });
+        }
+        
         // Send WhatsApp reminder
         function sendWhatsAppReminder(householdId, householdName, householdPhone, chandaType) {
             // Get masjid info
             const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
             
-           // Create message in Hindi and English
-let hindiMessage, englishMessage, subject;
-
-if (chandaType === 'monthly') {
-    subject = 'मासिक चंदा / Monthly Chanda';
-    hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
-    englishMessage = `Assalamwalaikum ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
-} else if (chandaType === 'imam') {
-    subject = 'इमाम साहब की सैलरी / Imam Sahab Salary';
-    hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nइमाम साहब की सैलरी के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
-    englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for Imam Sahab's salary is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
-} else if (chandaType === 'festival') {
-    subject = 'त्योहार चंदा / Festival Chanda';
-    hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nत्योहार चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
-    englishMessage = `Assalamwalaikum ${householdName},\n\nYour festival chanda is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
-} else if (chandaType === 'construction') {
-    subject = 'निर्माण चंदा / Construction Chanda';
-    hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nमस्जिद के निर्माण के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
-    englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for masjid construction is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
-}
-
-const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}`;
-
+            // Create message in Hindi and English
+            let hindiMessage, englishMessage, subject;
+            
+            if (chandaType === 'monthly') {
+                subject = 'मासिक चंदा / Monthly Chanda';
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            } else if (chandaType === 'imam') {
+                subject = 'इमाम साहब की सैलरी / Imam Sahab Salary';
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nइमाम साहब की सैलरी के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for Imam Sahab's salary is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            } else if (chandaType === 'festival') {
+                subject = 'त्योहार चंदा / Festival Chanda';
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nत्योहार चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour festival chanda is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            } else if (chandaType === 'construction') {
+                subject = 'निर्माण चंदा / Construction Chanda';
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nमस्जिद के निर्माण के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for masjid construction is still pending. Please submit it as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            }
+            
+            const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}`;
+            
             // Get WhatsApp numbers
             const whatsappNumbers = masjidInfo.whatsappNumbers || [];
             
@@ -4912,8 +5192,8 @@ const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}`;
             
             // Update image preview with masjid QR code
             const imagePreview = document.getElementById('whatsappImagePreview');
-            if (masjidInfo.logo) {
-                imagePreview.innerHTML = `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 200px; max-height: 200px;">`;
+            if (masjidInfo.qrCode) {
+                imagePreview.innerHTML = `<img src="${masjidInfo.qrCode}" alt="Masjid QR Code" style="max-width: 200px; max-height: 200px;">`;
             } else {
                 imagePreview.innerHTML = `<p class="text-muted">Masjid QR code will appear here</p>`;
                 
