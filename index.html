@@ -810,6 +810,48 @@
             margin-top: 15px;
         }
         
+        /* Download Format Selector Styles */
+        .download-format-selector {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .download-format-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 4px;
+            box-shadow: 0 6px 12px rgba(0,0,0,.175);
+        }
+        
+        .download-format-dropdown.show {
+            display: block;
+        }
+        
+        .download-format-item {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: 400;
+            line-height: 1.42857143;
+            color: #333;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        
+        .download-format-item:hover, .download-format-item:focus {
+            color: #262626;
+            text-decoration: none;
+            background-color: #f5f5f5;
+        }
+        
         @media (max-width: 768px) {
             .navbar-brand {
                 font-size: 1.5rem;
@@ -1106,9 +1148,15 @@
                         </div>
                         
                         <div class="mt-3 text-end">
-                            <button class="btn btn-primary" id="generateCommitteeReport">
-                                <i class="fas fa-file-pdf me-2"></i> Generate Report
-                            </button>
+                            <div class="download-format-selector">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="generateCommitteeReportBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-file-pdf me-2"></i> Generate Report
+                                </button>
+                                <ul class="dropdown-menu download-format-dropdown" aria-labelledby="generateCommitteeReportBtn">
+                                    <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="committee">Download as PDF</a></li>
+                                    <li><a class="dropdown-item download-format-item" data-format="image" data-report="committee">Download as Image</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     
@@ -1197,9 +1245,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-donation-report" data-type="general">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-donation-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-type="general">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="donation" data-type="general">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="donation" data-type="general">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1207,9 +1261,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-donation-report" data-type="monthly">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-donation-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-type="monthly">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="donation" data-type="monthly">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="donation" data-type="monthly">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1217,9 +1277,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-donation-report" data-type="jumma">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-donation-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-type="jumma">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="donation" data-type="jumma">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="donation" data-type="jumma">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1227,9 +1293,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-donation-report" data-type="imam">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-donation-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-type="imam">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="donation" data-type="imam">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="donation" data-type="imam">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1237,9 +1309,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-donation-report" data-type="festival">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-donation-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-type="festival">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="donation" data-type="festival">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="donation" data-type="festival">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1247,9 +1325,15 @@
                                             <td><strong>0.00</strong></td>
                                             <td><strong>0</strong></td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-donation-report" data-type="all">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-donation-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-type="all">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="donation" data-type="all">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="donation" data-type="all">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1427,9 +1511,15 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 text-end">
-                                    <button class="btn btn-primary" id="generateConstructionReport">
-                                        <i class="fas fa-file-pdf me-2"></i> Generate Report
-                                    </button>
+                                    <div class="download-format-selector">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" id="generateConstructionReportBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-file-pdf me-2"></i> Generate Report
+                                        </button>
+                                        <ul class="dropdown-menu download-format-dropdown" aria-labelledby="generateConstructionReportBtn">
+                                            <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="construction">Download as PDF</a></li>
+                                            <li><a class="dropdown-item download-format-item" data-format="image" data-report="construction">Download as Image</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1593,9 +1683,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="general">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-chanda-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-purpose="general">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="chanda" data-purpose="general">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="chanda" data-purpose="general">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1603,9 +1699,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="maintenance">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-chanda-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-purpose="maintenance">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="chanda" data-purpose="maintenance">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="chanda" data-purpose="maintenance">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1613,9 +1715,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="education">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-chanda-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-purpose="education">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="chanda" data-purpose="education">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="chanda" data-purpose="education">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1623,9 +1731,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="charity">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-chanda-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-purpose="charity">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="chanda" data-purpose="charity">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="chanda" data-purpose="charity">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1633,9 +1747,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="other">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-chanda-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-purpose="other">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="chanda" data-purpose="other">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="chanda" data-purpose="other">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1643,9 +1763,15 @@
                                             <td>0.00</td>
                                             <td>0</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="construction">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-chanda-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-purpose="construction">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="chanda" data-purpose="construction">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="chanda" data-purpose="construction">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1653,9 +1779,15 @@
                                             <td><strong>0.00</strong></td>
                                             <td><strong>0</strong></td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="all">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </button>
+                                                <div class="download-format-selector">
+                                                    <button class="btn btn-sm btn-outline-primary dropdown-toggle generate-chanda-report" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-purpose="all">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu download-format-dropdown">
+                                                        <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="chanda" data-purpose="all">PDF</a></li>
+                                                        <li><a class="dropdown-item download-format-item" data-format="image" data-report="chanda" data-purpose="all">Image</a></li>
+                                                    </ul>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1968,9 +2100,15 @@
                                             </div>
                                             <div id="attachmentList" class="file-attachments mt-2"></div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary w-100">
-                                            <i class="fas fa-file-pdf me-2"></i> रिपोर्ट जनरेट करें
-                                        </button>
+                                        <div class="download-format-selector">
+                                            <button class="btn btn-primary dropdown-toggle w-100" type="button" id="generateFinancialReportBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-file-pdf me-2"></i> रिपोर्ट जनरेट करें
+                                            </button>
+                                            <ul class="dropdown-menu download-format-dropdown w-100" aria-labelledby="generateFinancialReportBtn">
+                                                <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="financial">Download as PDF</a></li>
+                                                <li><a class="dropdown-item download-format-item" data-format="image" data-report="financial">Download as Image</a></li>
+                                            </ul>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -1982,18 +2120,42 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="d-grid gap-2">
-                                        <button class="btn btn-outline-primary" id="generateMonthlyReport">
-                                            <i class="fas fa-calendar-alt me-2"></i> मासिक रिपोर्ट
-                                        </button>
-                                        <button class="btn btn-outline-primary" id="generateQuarterlyReport">
-                                            <i class="fas fa-calendar me-2"></i> त्रैमासिक रिपोर्ट
-                                        </button>
-                                        <button class="btn btn-outline-primary" id="generateAnnualReport">
-                                            <i class="fas fa-calendar-year me-2"></i> वार्षिक रिपोर्ट
-                                        </button>
-                                        <button class="btn btn-outline-primary" id="generateCustomReport">
-                                            <i class="fas fa-file-alt me-2"></i> कस्टम रिपोर्ट
-                                        </button>
+                                        <div class="download-format-selector">
+                                            <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="generateMonthlyReportBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-calendar-alt me-2"></i> मासिक रिपोर्ट
+                                            </button>
+                                            <ul class="dropdown-menu download-format-dropdown w-100" aria-labelledby="generateMonthlyReportBtn">
+                                                <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="quick" data-type="monthly">Download as PDF</a></li>
+                                                <li><a class="dropdown-item download-format-item" data-format="image" data-report="quick" data-type="monthly">Download as Image</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="download-format-selector">
+                                            <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="generateQuarterlyReportBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-calendar me-2"></i> त्रैमासिक रिपोर्ट
+                                            </button>
+                                            <ul class="dropdown-menu download-format-dropdown w-100" aria-labelledby="generateQuarterlyReportBtn">
+                                                <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="quick" data-type="quarterly">Download as PDF</a></li>
+                                                <li><a class="dropdown-item download-format-item" data-format="image" data-report="quick" data-type="quarterly">Download as Image</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="download-format-selector">
+                                            <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="generateAnnualReportBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-calendar-year me-2"></i> वार्षिक रिपोर्ट
+                                            </button>
+                                            <ul class="dropdown-menu download-format-dropdown w-100" aria-labelledby="generateAnnualReportBtn">
+                                                <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="quick" data-type="annual">Download as PDF</a></li>
+                                                <li><a class="dropdown-item download-format-item" data-format="image" data-report="quick" data-type="annual">Download as Image</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="download-format-selector">
+                                            <button class="btn btn-outline-primary dropdown-toggle w-100" type="button" id="generateCustomReportBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-file-alt me-2"></i> कस्टम रिपोर्ट
+                                            </button>
+                                            <ul class="dropdown-menu download-format-dropdown w-100" aria-labelledby="generateCustomReportBtn">
+                                                <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="quick" data-type="custom">Download as PDF</a></li>
+                                                <li><a class="dropdown-item download-format-item" data-format="image" data-report="quick" data-type="custom">Download as Image</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -2027,10 +2189,16 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="downloadPdf">
-                        <i class="fas fa-download me-2"></i> Download PDF
-                    </button>
+                    <div class="download-format-selector">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="downloadPreviewBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-download me-2"></i> Download
+                        </button>
+                        <ul class="dropdown-menu download-format-dropdown" aria-labelledby="downloadPreviewBtn">
+                            <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="preview">Download as PDF</a></li>
+                            <li><a class="dropdown-item download-format-item" data-format="image" data-report="preview">Download as Image</a></li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -2279,35 +2447,37 @@
             });
             
             // Generate Committee Report
-            document.getElementById('generateCommitteeReport').addEventListener('click', function() {
-                generateCommitteeReport();
+            document.querySelectorAll('.download-format-item[data-report="committee"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
+                    generateCommitteeReport(format);
+                });
             });
             
             // Generate Donation Reports
-            document.querySelectorAll('.generate-donation-report').forEach(button => {
+            document.querySelectorAll('.download-format-item[data-report="donation"]').forEach(button => {
                 button.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
                     const type = this.getAttribute('data-type');
-                    generateDonationReport(type);
+                    generateDonationReport(type, format);
                 });
             });
             
             // Generate Construction Report
-            document.getElementById('generateConstructionReport').addEventListener('click', function() {
-                generateConstructionReport();
-            });
-            
-            // Generate Chanda Reports
-            document.querySelectorAll('.generate-chanda-report').forEach(button => {
+            document.querySelectorAll('.download-format-item[data-report="construction"]').forEach(button => {
                 button.addEventListener('click', function() {
-                    const purpose = this.getAttribute('data-purpose');
-                    generateChandaReport(purpose);
+                    const format = this.getAttribute('data-format');
+                    generateConstructionReport(format);
                 });
             });
             
-            // Download PDF button
-            document.getElementById('downloadPdf').addEventListener('click', function() {
-                const content = document.getElementById('previewContent');
-                downloadPdf(content);
+            // Generate Chanda Reports
+            document.querySelectorAll('.download-format-item[data-report="chanda"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
+                    const purpose = this.getAttribute('data-purpose');
+                    generateChandaReport(purpose, format);
+                });
             });
             
             // Report date range change
@@ -2360,22 +2530,12 @@
             });
             
             // Quick report buttons
-            document.getElementById('generateMonthlyReport').addEventListener('click', function() {
-                generateQuickReport('monthly');
-            });
-            
-            document.getElementById('generateQuarterlyReport').addEventListener('click', function() {
-                generateQuickReport('quarterly');
-            });
-            
-            document.getElementById('generateAnnualReport').addEventListener('click', function() {
-                generateQuickReport('annual');
-            });
-            
-            document.getElementById('generateCustomReport').addEventListener('click', function() {
-                document.getElementById('reportDateRange').value = 'custom';
-                document.getElementById('customDateRange').style.display = 'flex';
-                document.getElementById('financialReportForm').scrollIntoView({ behavior: 'smooth' });
+            document.querySelectorAll('.download-format-item[data-report="quick"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
+                    const type = this.getAttribute('data-type');
+                    generateQuickReport(type, format);
+                });
             });
             
             // Announcement image upload
@@ -2485,6 +2645,28 @@
                 window.open(whatsappUrl, '_blank');
                 
                 showToast('Opening WhatsApp with reminder image...', 'success');
+            });
+            
+            // Download from preview modal
+            document.querySelectorAll('.download-format-item[data-report="preview"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
+                    const content = document.getElementById('previewContent');
+                    
+                    if (format === 'pdf') {
+                        downloadPdf(content);
+                    } else if (format === 'image') {
+                        downloadImage(content);
+                    }
+                });
+            });
+            
+            // Financial report download
+            document.querySelectorAll('.download-format-item[data-report="financial"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
+                    generateFinancialReport(format);
+                });
             });
         }
         
@@ -2762,7 +2944,7 @@
         }
         
         // Generate quick report
-        function generateQuickReport(type) {
+        function generateQuickReport(type, format) {
             let startDate, endDate, title;
             const today = new Date();
             
@@ -2783,6 +2965,11 @@
                     endDate = new Date(today.getFullYear(), 11, 31);
                     title = 'वार्षिक वित्तीय रिपोर्ट';
                     break;
+                case 'custom':
+                    document.getElementById('reportDateRange').value = 'custom';
+                    document.getElementById('customDateRange').style.display = 'flex';
+                    document.getElementById('financialReportForm').scrollIntoView({ behavior: 'smooth' });
+                    return;
                 default:
                     return;
             }
@@ -2799,6 +2986,9 @@
             
             // Scroll to form
             document.getElementById('financialReportForm').scrollIntoView({ behavior: 'smooth' });
+            
+            // Generate report with selected format
+            generateFinancialReport(format);
         }
         
         // Format date for input
@@ -2807,7 +2997,7 @@
         }
         
         // Generate financial report
-        function generateFinancialReport() {
+        function generateFinancialReport(format = 'pdf') {
             const dateRange = document.getElementById('reportDateRange').value;
             let startDate, endDate;
             
@@ -3575,11 +3765,11 @@
             }
             
             const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
-            const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
             
             const link = memberHouseholdLinks.find(l => l.householdId == householdId);
             
             if (link) {
+                const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
                 const member = committeeMembers.find(m => m.id === link.memberId);
                 if (member) {
                     memberField.value = member.name;
@@ -4469,16 +4659,25 @@
                 </div>
                 
                 <div class="text-end">
-                    <button class="btn btn-primary generate-announcement-pdf" data-id="${announcement.id}">
-                        <i class="fas fa-file-pdf me-2"></i> Generate PDF
-                    </button>
+                    <div class="download-format-selector">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="generateAnnouncementPdfBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-file-pdf me-2"></i> Generate PDF
+                        </button>
+                        <ul class="dropdown-menu download-format-dropdown" aria-labelledby="generateAnnouncementPdfBtn">
+                            <li><a class="dropdown-item download-format-item" data-format="pdf" data-report="announcement" data-id="${announcement.id}">Download as PDF</a></li>
+                            <li><a class="dropdown-item download-format-item" data-format="image" data-report="announcement" data-id="${announcement.id}">Download as Image</a></li>
+                        </ul>
+                    </div>
                 </div>
             `;
             
             // Add event listener for PDF generation
-            document.querySelector('.generate-announcement-pdf').addEventListener('click', function() {
-                const id = parseInt(this.getAttribute('data-id'));
-                generateAnnouncementPDF(id);
+            document.querySelectorAll('.download-format-item[data-report="announcement"]').forEach(button => {
+                button.addEventListener('click', function() {
+                    const format = this.getAttribute('data-format');
+                    const id = parseInt(this.getAttribute('data-id'));
+                    generateAnnouncementPDF(id, format);
+                });
             });
         }
         
@@ -5378,7 +5577,7 @@
         }
         
         // Generate committee report
-        function generateCommitteeReport() {
+        function generateCommitteeReport(format = 'pdf') {
             const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
             const households = JSON.parse(localStorage.getItem('households')) || [];
             const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
@@ -5497,10 +5696,21 @@
             
             const modal = new bootstrap.Modal(document.getElementById('previewModal'));
             modal.show();
+            
+            // Download in selected format
+            if (format === 'pdf') {
+                setTimeout(() => {
+                    downloadPdf(document.getElementById('previewContent'));
+                }, 500);
+            } else if (format === 'image') {
+                setTimeout(() => {
+                    downloadImage(document.getElementById('previewContent'));
+                }, 500);
+            }
         }
         
         // Generate donation report
-        function generateDonationReport(type) {
+        function generateDonationReport(type, format = 'pdf') {
             const donations = JSON.parse(localStorage.getItem('donations')) || [];
             const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
             
@@ -5602,10 +5812,21 @@
             
             const modal = new bootstrap.Modal(document.getElementById('previewModal'));
             modal.show();
+            
+            // Download in selected format
+            if (format === 'pdf') {
+                setTimeout(() => {
+                    downloadPdf(document.getElementById('previewContent'));
+                }, 500);
+            } else if (format === 'image') {
+                setTimeout(() => {
+                    downloadImage(document.getElementById('previewContent'));
+                }, 500);
+            }
         }
         
         // Generate construction report
-        function generateConstructionReport() {
+        function generateConstructionReport(format = 'pdf') {
             const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
             const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
             
@@ -5745,10 +5966,21 @@
             
             const modal = new bootstrap.Modal(document.getElementById('previewModal'));
             modal.show();
+            
+            // Download in selected format
+            if (format === 'pdf') {
+                setTimeout(() => {
+                    downloadPdf(document.getElementById('previewContent'));
+                }, 500);
+            } else if (format === 'image') {
+                setTimeout(() => {
+                    downloadImage(document.getElementById('previewContent'));
+                }, 500);
+            }
         }
         
         // Generate announcement PDF
-        function generateAnnouncementPDF(id) {
+        function generateAnnouncementPDF(id, format = 'pdf') {
             const announcements = JSON.parse(localStorage.getItem('announcements')) || [];
             const announcement = announcements.find(a => a.id === id);
             
@@ -5817,10 +6049,21 @@
             
             const modal = new bootstrap.Modal(document.getElementById('previewModal'));
             modal.show();
+            
+            // Download in selected format
+            if (format === 'pdf') {
+                setTimeout(() => {
+                    downloadPdf(document.getElementById('previewContent'));
+                }, 500);
+            } else if (format === 'image') {
+                setTimeout(() => {
+                    downloadImage(document.getElementById('previewContent'));
+                }, 500);
+            }
         }
         
         // Generate chanda report
-        function generateChandaReport(purpose) {
+        function generateChandaReport(purpose, format = 'pdf') {
             const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
             const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
             
@@ -5922,6 +6165,17 @@
             
             const modal = new bootstrap.Modal(document.getElementById('previewModal'));
             modal.show();
+            
+            // Download in selected format
+            if (format === 'pdf') {
+                setTimeout(() => {
+                    downloadPdf(document.getElementById('previewContent'));
+                }, 500);
+            } else if (format === 'image') {
+                setTimeout(() => {
+                    downloadImage(document.getElementById('previewContent'));
+                }, 500);
+            }
         }
         
         // Download PDF
@@ -5952,6 +6206,25 @@
                 }
                 
                 pdf.save(`${new Date().toISOString().split('T')[0]}_report.pdf`);
+                
+                showToast('PDF downloaded successfully', 'success');
+            });
+        }
+        
+        // Download Image
+        function downloadImage(content) {
+            html2canvas(content, {
+                scale: 2,
+                logging: false,
+                useCORS: true,
+                backgroundColor: null
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `${new Date().toISOString().split('T')[0]}_report.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                showToast('Image downloaded successfully', 'success');
             });
         }
         
@@ -6000,6 +6273,658 @@
                 toast.remove();
             }, 5000);
         }
+
+// Add chanda collection
+function addChandaCollection() {
+    const donor = document.getElementById('chandaDonor').value;
+    const amount = parseFloat(document.getElementById('chandaAmount').value);
+    const date = document.getElementById('chandaDate').value;
+    const collectorId = document.getElementById('chandaCollector').value;
+    const purpose = document.getElementById('chandaPurpose').value;
+    const notes = document.getElementById('chandaNotes').value;
+    
+    if (!donor || !amount || amount <= 0 || !date || !collectorId) {
+        showToast('Please fill all required fields with valid values', 'error');
+        return;
+    }
+    
+    const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+    const newCollection = {
+        id: Date.now(),
+        donor,
+        amount,
+        date,
+        collectorId: parseInt(collectorId),
+        purpose,
+        notes
+    };
+    
+    chandaCollections.push(newCollection);
+    localStorage.setItem('chandaCollections', JSON.stringify(chandaCollections));
+    
+    // If purpose is construction, also add to construction donations
+    if (purpose === 'construction') {
+        const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+        
+        // Get committee member name
+        const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
+        const collector = committeeMembers.find(m => m.id === parseInt(collectorId));
+        
+        // Create a new construction donation entry
+        const newConstructionDonation = {
+            id: Date.now() + 1000000, // Ensure unique ID with different range
+            householdId: null, // Not from a specific household
+            householdName: donor, // Use donor name as household name
+            memberId: parseInt(collectorId),
+            memberName: collector ? collector.name : '',
+            amount: amount,
+            date: date,
+            receipt: null
+        };
+        
+        constructionDonations.push(newConstructionDonation);
+        localStorage.setItem('constructionDonations', JSON.stringify(constructionDonations));
+        
+        // Update construction donations table and totals
+        updateConstructionDonationsTable(constructionDonations);
+        updateConstructionDonationsTotal(constructionDonations);
+        
+        const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
+        updateConstructionBudgetSummary(constructionDonations, constructionExpenses);
+        
+        // Show additional notification for construction donation
+        showToast('Construction donation also added successfully!', 'success');
+    }
+    
+    updateChandaTable(chandaCollections);
+    updateChandaSummary(chandaCollections);
+    updateSummarySection();
+    
+    document.getElementById('chandaForm').reset();
+    setCurrentDate();
+    showToast('Chanda collection added successfully!', 'success');
+}
+
+// Update summary section
+function updateSummarySection() {
+    // Get all financial data
+    const donations = JSON.parse(localStorage.getItem('donations')) || [];
+    const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+    const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
+    const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+    
+    // Calculate totals
+    const jummaCollection = donations
+        .filter(d => d.type === 'jumma')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const monthlyChanda = donations
+        .filter(d => d.type === 'monthly')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const generalDonations = donations
+        .filter(d => d.type === 'general')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const imamSalary = donations
+        .filter(d => d.type === 'imam')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const festivalChanda = donations
+        .filter(d => d.type === 'festival')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    // Get construction donations from both construction donations and chanda collections with construction purpose
+    const directConstructionDonations = constructionDonations
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const constructionChandaFromCollections = chandaCollections
+        .filter(c => c.purpose === 'construction')
+        .reduce((sum, c) => sum + c.amount, 0);
+    
+    const totalConstructionDonations = directConstructionDonations + constructionChandaFromCollections;
+    
+    // Get non-construction chanda collections
+    const nonConstructionChandaCollections = chandaCollections
+        .filter(c => c.purpose !== 'construction')
+        .reduce((sum, c) => sum + c.amount, 0);
+    
+    const totalIncome = jummaCollection + monthlyChanda + generalDonations + imamSalary + 
+                       festivalChanda + totalConstructionDonations + nonConstructionChandaCollections;
+    
+    const totalExpenses = constructionExpenses
+        .reduce((sum, e) => sum + e.amount, 0);
+    
+    const totalBalance = totalIncome - totalExpenses;
+    
+    // Update summary display
+    document.getElementById('summaryJummaCollection').textContent = jummaCollection.toFixed(2);
+    document.getElementById('summaryMonthlyChanda').textContent = monthlyChanda.toFixed(2);
+    document.getElementById('summaryGeneralDonations').textContent = generalDonations.toFixed(2);
+    document.getElementById('summaryImamSalary').textContent = imamSalary.toFixed(2);
+    document.getElementById('summaryFestivalChanda').textContent = festivalChanda.toFixed(2);
+    document.getElementById('summaryConstructionDonations').textContent = totalConstructionDonations.toFixed(2);
+    document.getElementById('summaryChandaCollections').textContent = nonConstructionChandaCollections.toFixed(2);
+    document.getElementById('summaryTotalIncome').textContent = totalIncome.toFixed(2);
+    document.getElementById('summaryConstructionExpenses').textContent = totalExpenses.toFixed(2);
+    document.getElementById('summaryTotalExpenses').textContent = totalExpenses.toFixed(2);
+    document.getElementById('summaryTotalBalance').textContent = totalBalance.toFixed(2);
+    
+    // Update balance color based on value
+    const balanceElement = document.getElementById('summaryTotalBalance').parentElement;
+    if (totalBalance < 0) {
+        balanceElement.className = 'summary-item balance negative';
+    } else {
+        balanceElement.className = 'summary-item balance positive';
+    }
+}
+
+// Update chanda summary
+function updateChandaSummary(collections) {
+    const summary = {
+        general: { total: 0, count: 0 },
+        maintenance: { total: 0, count: 0 },
+        education: { total: 0, count: 0 },
+        charity: { total: 0, count: 0 },
+        other: { total: 0, count: 0 },
+        construction: { total: 0, count: 0 }
+    };
+    
+    collections.forEach(collection => {
+        summary[collection.purpose].total += collection.amount;
+        summary[collection.purpose].count += 1;
+    });
+    
+    const tableBody = document.getElementById('chandaSummaryTable');
+    const rows = tableBody.querySelectorAll('tr');
+    
+    // Update individual rows
+    rows[0].cells[1].textContent = summary.general.total.toFixed(2);
+    rows[0].cells[2].textContent = summary.general.count;
+    
+    rows[1].cells[1].textContent = summary.maintenance.total.toFixed(2);
+    rows[1].cells[2].textContent = summary.maintenance.count;
+    
+    rows[2].cells[1].textContent = summary.education.total.toFixed(2);
+    rows[2].cells[2].textContent = summary.education.count;
+    
+    rows[3].cells[1].textContent = summary.charity.total.toFixed(2);
+    rows[3].cells[2].textContent = summary.charity.count;
+    
+    rows[4].cells[1].textContent = summary.other.total.toFixed(2);
+    rows[4].cells[2].textContent = summary.other.count;
+    
+    rows[5].cells[1].textContent = summary.construction.total.toFixed(2);
+    rows[5].cells[2].textContent = summary.construction.count;
+    
+    // Update total row
+    const totalAmount = Object.values(summary).reduce((sum, item) => sum + item.total, 0);
+    const totalCount = Object.values(summary).reduce((sum, item) => sum + item.count, 0);
+    
+    rows[6].cells[1].textContent = totalAmount.toFixed(2);
+    rows[6].cells[2].textContent = totalCount;
+    
+    // If there are construction chanda collections, update the construction section
+    if (summary.construction.count > 0) {
+        const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+        updateConstructionDonationsTable(constructionDonations);
+        updateConstructionDonationsTotal(constructionDonations);
+        
+        const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
+        updateConstructionBudgetSummary(constructionDonations, constructionExpenses);
+    }
+}
+
+// Update construction donations table
+function updateConstructionDonationsTable(donations) {
+    const tableBody = document.getElementById('constructionDonationsTable');
+    tableBody.innerHTML = '';
+    
+    // Sort donations by date (newest first)
+    const sortedDonations = [...donations].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    sortedDonations.forEach(donation => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${formatDate(donation.date)}</td>
+            <td>${donation.householdName}</td>
+            <td>${donation.memberName || '-'}</td>
+            <td>₹${donation.amount.toFixed(2)}</td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary me-1 view-construction-donation" data-id="${donation.id}">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger delete-construction-donation" data-id="${donation.id}">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+    
+    // Add event listeners
+    document.querySelectorAll('.view-construction-donation').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = parseInt(this.getAttribute('data-id'));
+            viewConstructionDonation(id);
+        });
+    });
+    
+    document.querySelectorAll('.delete-construction-donation').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = parseInt(this.getAttribute('data-id'));
+            deleteConstructionDonation(id);
+        });
+    });
+}
+
+// Delete construction donation
+function deleteConstructionDonation(id) {
+    if (confirm('Are you sure you want to delete this construction donation?')) {
+        const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+        const updatedDonations = constructionDonations.filter(d => d.id !== id);
+        localStorage.setItem('constructionDonations', JSON.stringify(updatedDonations));
+        
+        updateConstructionDonationsTable(updatedDonations);
+        updateConstructionDonationsTotal(updatedDonations);
+        
+        const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
+        updateConstructionBudgetSummary(updatedDonations, constructionExpenses);
+        updateSummarySection();
+        
+        showToast('Construction donation deleted successfully', 'success');
+    }
+}
+
+// Update financial chart
+function updateFinancialChart() {
+    if (!window.financialChart) return;
+    
+    // Get data for chart
+    const donations = JSON.parse(localStorage.getItem('donations')) || [];
+    const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+    const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
+    const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+    
+    const jummaCollection = donations
+        .filter(d => d.type === 'jumma')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const monthlyChanda = donations
+        .filter(d => d.type === 'monthly')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const generalDonations = donations
+        .filter(d => d.type === 'general')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const imamSalary = donations
+        .filter(d => d.type === 'imam')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const festivalChanda = donations
+        .filter(d => d.type === 'festival')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    // Get construction donations from both construction donations and chanda collections with construction purpose
+    const directConstructionDonations = constructionDonations
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const constructionChandaFromCollections = chandaCollections
+        .filter(c => c.purpose === 'construction')
+        .reduce((sum, c) => sum + c.amount, 0);
+    
+    const totalConstructionDonations = directConstructionDonations + constructionChandaFromCollections;
+    
+    // Get non-construction chanda collections
+    const nonConstructionChandaCollections = chandaCollections
+        .filter(c => c.purpose !== 'construction')
+        .reduce((sum, c) => sum + c.amount, 0);
+    
+    const totalExpenses = constructionExpenses
+        .reduce((sum, e) => sum + e.amount, 0);
+    
+    // Update chart data
+    window.financialChart.data.datasets[0].data = [
+        jummaCollection,
+        monthlyChanda,
+        generalDonations,
+        imamSalary,
+        festivalChanda,
+        totalConstructionDonations,
+        nonConstructionChandaCollections,
+        -totalExpenses
+    ];
+    
+    window.financialChart.update();
+}
+
+// Generate financial report
+function generateFinancialReport(format = 'pdf') {
+    const dateRange = document.getElementById('reportDateRange').value;
+    let startDate, endDate;
+    
+    if (dateRange === 'custom') {
+        startDate = new Date(document.getElementById('reportStartDate').value);
+        endDate = new Date(document.getElementById('reportEndDate').value);
+    } else {
+        const today = new Date();
+        
+        switch (dateRange) {
+            case 'currentMonth':
+                startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+                endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                break;
+            case 'lastMonth':
+                startDate = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                endDate = new Date(today.getFullYear(), today.getMonth(), 0);
+                break;
+            case 'currentYear':
+                startDate = new Date(today.getFullYear(), 0, 1);
+                endDate = new Date(today.getFullYear(), 11, 31);
+                break;
+            default: // all
+                startDate = new Date(2000, 0, 1); // Very old date to include all records
+                endDate = new Date();
+        }
+    }
+    
+    // Get included sections
+    const includeDonations = document.getElementById('includeDonations').checked;
+    const includeConstruction = document.getElementById('includeConstruction').checked;
+    const includeChanda = document.getElementById('includeChanda').checked;
+    
+    // Get attachments
+    const attachments = Array.from(document.getElementById('reportAttachments').files);
+    
+    // Get all financial data
+    const donations = JSON.parse(localStorage.getItem('donations')) || [];
+    const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+    const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
+    const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
+    
+    // Filter data by date range
+    const filteredDonations = donations.filter(d => {
+        const donationDate = new Date(d.date);
+        return donationDate >= startDate && donationDate <= endDate;
+    });
+    
+    const filteredConstructionDonations = constructionDonations.filter(d => {
+        const donationDate = new Date(d.date);
+        return donationDate >= startDate && donationDate <= endDate;
+    });
+    
+    const filteredConstructionExpenses = constructionExpenses.filter(e => {
+        const expenseDate = new Date(e.date);
+        return expenseDate >= startDate && expenseDate <= endDate;
+    });
+    
+    const filteredChandaCollections = chandaCollections.filter(c => {
+        const collectionDate = new Date(c.date);
+        return collectionDate >= startDate && collectionDate <= endDate;
+    });
+    
+    // Calculate totals
+    let totalIncome = 0;
+    let totalExpenses = 0;
+    
+    const jummaCollection = filteredDonations
+        .filter(d => d.type === 'jumma')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const monthlyChanda = filteredDonations
+        .filter(d => d.type === 'monthly')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const generalDonations = filteredDonations
+        .filter(d => d.type === 'general')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const imamSalary = filteredDonations
+        .filter(d => d.type === 'imam')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const festivalChanda = filteredDonations
+        .filter(d => d.type === 'festival')
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    // Get construction donations from both construction donations and chanda collections with construction purpose
+    const directConstructionDonations = filteredConstructionDonations
+        .reduce((sum, d) => sum + d.amount, 0);
+    
+    const constructionChandaFromCollections = filteredChandaCollections
+        .filter(c => c.purpose === 'construction')
+        .reduce((sum, c) => sum + c.amount, 0);
+    
+    const totalConstructionDonations = directConstructionDonations + constructionChandaFromCollections;
+    
+    // Get non-construction chanda collections
+    const nonConstructionChandaCollections = filteredChandaCollections
+        .filter(c => c.purpose !== 'construction')
+        .reduce((sum, c) => sum + c.amount, 0);
+    
+    totalIncome = jummaCollection + monthlyChanda + generalDonations + imamSalary + 
+                 festivalChanda + totalConstructionDonations + nonConstructionChandaCollections;
+    
+    totalExpenses = filteredConstructionExpenses
+        .reduce((sum, e) => sum + e.amount, 0);
+    
+    const totalBalance = totalIncome - totalExpenses;
+    
+    // Get masjid info for PDF header
+    const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
+    
+    // Generate report content
+    let content = `
+        <div class="islamic-pdf-header">
+            ${masjidInfo.logo ? `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 100px; max-height: 100px; margin-bottom: 10px;">` : ''}
+            <h2>${masjidInfo.name || 'Masjid'} वित्तीय रिपोर्ट</h2>
+            <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+        </div>
+        
+        <div class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>रिपोर्ट अवधि:</strong> ${formatDate(startDate)} - ${formatDate(endDate)}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>जनरेट किया गया:</strong> ${formatDate(new Date())}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <h4 class="text-success">₹${totalIncome.toFixed(2)}</h4>
+                    <p>कुल आय</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h4 class="text-danger">₹${totalExpenses.toFixed(2)}</h4>
+                    <p>कुल खर्च</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h4 class="${totalBalance < 0 ? 'text-danger' : 'text-primary'}">₹${totalBalance.toFixed(2)}</h4>
+                    <p>कुल बचत</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Add income details if donations are included
+    if (includeDonations) {
+        content += `
+            <div class="mb-4">
+                <h5>दान / जुम्मा कलेक्शन</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>प्रकार</th>
+                            <th>राशि (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>जुम्मा कलेक्शन</td>
+                            <td>₹${jummaCollection.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>मासिक चंदा</td>
+                            <td>₹${monthlyChanda.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>सामान्य दान</td>
+                            <td>₹${generalDonations.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>इमाम सैलरी</td>
+                            <td>₹${imamSalary.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>त्योहार चंदा</td>
+                            <td>₹${festivalChanda.toFixed(2)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        `;
+    }
+    
+    // Add construction details if construction is included
+    if (includeConstruction) {
+        content += `
+            <div class="mb-4">
+                <h5>निर्माण बजट और खर्च</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>प्रकार</th>
+                            <th>राशि (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>निर्माण दान (सीधे)</td>
+                            <td>₹${directConstructionDonations.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>निर्माण चंदा (चंदा संग्रह से)</td>
+                            <td>₹${constructionChandaFromCollections.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>कुल निर्माण दान</strong></td>
+                            <td><strong>₹${totalConstructionDonations.toFixed(2)}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>निर्माण खर्च</td>
+                            <td>₹${totalExpenses.toFixed(2)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        `;
+    }
+    
+    // Add chanda details if chanda is included
+    if (includeChanda) {
+        content += `
+            <div class="mb-4">
+                <h5>चंदा संग्रह</h5>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>प्रकार</th>
+                            <th>राशि (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>सामान्य चंदा</td>
+                            <td>₹${filteredChandaCollections
+                                .filter(c => c.purpose === 'general')
+                                .reduce((sum, c) => sum + c.amount, 0).toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>मस्जिद रखरखाव</td>
+                            <td>₹${filteredChandaCollections
+                                .filter(c => c.purpose === 'maintenance')
+                                .reduce((sum, c) => sum + c.amount, 0).toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>इस्लामिक शिक्षा</td>
+                            <td>₹${filteredChandaCollections
+                                .filter(c => c.purpose === 'education')
+                                .reduce((sum, c) => sum + c.amount, 0).toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>दान</td>
+                            <td>₹${filteredChandaCollections
+                                .filter(c => c.purpose === 'charity')
+                                .reduce((sum, c) => sum + c.amount, 0).toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td>अन्य</td>
+                            <td>₹${filteredChandaCollections
+                                .filter(c => c.purpose === 'other')
+                                .reduce((sum, c) => sum + c.amount, 0).toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>कुल गैर-निर्माण चंदा</strong></td>
+                            <td><strong>₹${nonConstructionChandaCollections.toFixed(2)}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        `;
+    }
+    
+    // Add attachments section if there are any
+    if (attachments.length > 0) {
+        content += `
+            <div class="mb-4">
+                <h5>अटैचमेंट्स</h5>
+                <ul>
+        `;
+        
+        attachments.forEach(attachment => {
+            content += `<li>${attachment.name}</li>`;
+        });
+        
+        content += `
+                </ul>
+            </div>
+        `;
+    }
+    
+    content += `
+        <div class="mb-4 text-center">
+            <div id="financialReportQrCode"></div>
+        </div>
+        
+        <div class="islamic-pdf-footer">
+            <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
+        </div>
+    `;
+    
+    document.getElementById('previewContent').innerHTML = content;
+    
+    // Generate QR code
+    setTimeout(() => {
+        const qrCodeContainer = document.getElementById('financialReportQrCode');
+        if (qrCodeContainer) {
+            qrCodeContainer.innerHTML = '';
+            new QRCode(qrCodeContainer, {
+                text: `Financial Report: ${formatDate(startDate)} - ${formatDate(endDate)}, Income: ₹${totalIncome.toFixed(2)}, Expenses: ₹${totalExpenses.toFixed(2)}, Balance: ₹${totalBalance.toFixed(2)}`,
+                width: 128,
+                height: 128
+            });
+        }
+    }, 100);
+    
+    const modal = new bootstrap.Modal(document.getElementById('previewModal'));
+    modal.show();
+}
+
     </script>
 </body>
 </html>
