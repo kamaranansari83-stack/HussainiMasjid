@@ -21,10 +21,10 @@
             --light-green: #d5f4e6;
             --gold: #ffc400;
             --cream: #f8f5f0;
-            --dark-blue: #006aff;
-            --light-blue: #00f7ff;
-            --text-dark: #333333;
-            --border-color: #dddddd;
+            --dark-blue: #ff00e6;
+            --light-blue: #15d8def0;
+            --text-dark: #000000;
+            --border-color: #00ff9d;
         }
         
         * {
@@ -549,67 +549,71 @@
         .islamic-receipt {
             background-color: white;
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             margin-top: 20px;
             border: 2px solid var(--primary-green);
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
             font-family: 'Amiri', serif;
             color: #333;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .islamic-receipt-header {
             text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
             border-bottom: 2px dashed var(--primary-green);
         }
         
         .islamic-receipt-header h2 {
             color: var(--primary-green);
             margin-bottom: 5px;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
         
         .islamic-receipt-header .arabic-text {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--dark-blue);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .islamic-receipt-masjid-info {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .islamic-receipt-masjid-info h3 {
             margin: 0;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: var(--primary-green);
         }
         
         .islamic-receipt-masjid-info p {
-            margin: 5px 0;
-            font-size: 0.9rem;
+            margin: 4px 0;
+            font-size: 0.85rem;
         }
         
         .islamic-receipt-content {
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .islamic-receipt-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            padding-bottom: 10px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
             border-bottom: 1px dashed #ddd;
+            font-size: 0.9rem;
         }
         
         .islamic-receipt-row:last-child {
             border-bottom: none;
             font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 15px;
-            padding-top: 15px;
+            font-size: 1rem;
+            margin-top: 12px;
+            padding-top: 12px;
             border-top: 1px dashed var(--primary-green);
         }
         
@@ -622,31 +626,32 @@
         }
         
         .islamic-receipt-amount {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: var(--primary-green);
         }
         
         .islamic-receipt-amount-words {
             text-align: center;
-            margin: 15px 0;
+            margin: 12px 0;
             font-style: italic;
             color: #666;
+            font-size: 0.85rem;
         }
         
         .islamic-receipt-footer {
             text-align: center;
-            margin-top: 20px;
-            padding-top: 15px;
+            margin-top: 15px;
+            padding-top: 12px;
             border-top: 1px solid #ddd;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #666;
         }
         
         .islamic-receipt-seal {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         
         .islamic-receipt-seal-left, .islamic-receipt-seal-right {
@@ -657,14 +662,14 @@
         .islamic-receipt-seal-line {
             height: 1px;
             background-color: #333;
-            margin: 30px 0 5px;
+            margin: 20px 0 5px;
         }
         
         .islamic-receipt-actions {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         
         /* Announcement Image Styles */
@@ -673,6 +678,97 @@
             max-height: 200px;
             border-radius: 8px;
             margin-top: 10px;
+        }
+        
+        /* Committee Position Styles */
+        .committee-position {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .committee-position h6 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .committee-members-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .committee-member-item {
+            background-color: white;
+            border-radius: 6px;
+            padding: 8px 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 200px;
+        }
+        
+        .committee-member-name {
+            font-weight: 500;
+        }
+        
+        .committee-member-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .committee-member-actions button {
+            padding: 2px 6px;
+            font-size: 0.8rem;
+        }
+        
+        /* Pending Chanda Type Styles */
+        .pending-chanda-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .pending-chanda-type {
+            flex: 1;
+            min-width: 200px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .pending-chanda-type h6 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .pending-chanda-type-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .pending-chanda-type-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pending-chanda-type-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pending-chanda-type-actions {
+            display: flex;
+            gap: 5px;
         }
         
         @media (max-width: 768px) {
@@ -697,6 +793,18 @@
             }
             
             .islamic-receipt-actions {
+                flex-direction: column;
+            }
+            
+            .committee-members-list {
+                flex-direction: column;
+            }
+            
+            .committee-member-item {
+                width: 100%;
+            }
+            
+            .pending-chanda-types {
                 flex-direction: column;
             }
         }
@@ -841,12 +949,12 @@
                                     <input type="text" class="form-control" id="memberName" placeholder="Enter member name">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="memberPhone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="memberPhone" placeholder="Enter phone number">
+                                    <label for="memberPosition" class="form-label">Position</label>
+                                    <input type="text" class="form-control" id="memberPosition" placeholder="Enter member position">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="memberEmail" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="memberEmail" placeholder="Enter email address">
+                                    <label for="memberPhone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="memberPhone" placeholder="Enter phone number">
                                 </div>
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-plus me-2"></i> Add Member
@@ -885,8 +993,8 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
+                                            <th>Position</th>
                                             <th>Phone</th>
-                                            <th>Email</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -948,7 +1056,6 @@
                                         <tr>
                                             <th>Member</th>
                                             <th>Household</th>
-                                            <th>Donation Tracking</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -963,6 +1070,13 @@
                             <button class="btn btn-primary" id="generateCommitteeReport">
                                 <i class="fas fa-file-pdf me-2"></i> Generate Report
                             </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h6 class="mb-3">Committee Positions</h6>
+                        <div id="committeePositionsContainer">
+                            <!-- Positions will be added here dynamically -->
                         </div>
                     </div>
                 </div>
@@ -981,8 +1095,10 @@
                             <h6 class="mb-3">Add New Donation</h6>
                             <form id="donationForm">
                                 <div class="mb-3">
-                                    <label for="donorName" class="form-label">Donor Name</label>
-                                    <input type="text" class="form-control" id="donorName" placeholder="Enter donor name">
+                                    <label for="donationHousehold" class="form-label">Household</label>
+                                    <select class="form-select" id="donationHousehold">
+                                        <option value="">-- Select Household --</option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="donationAmount" class="form-label">Amount (₹)</label>
@@ -1000,6 +1116,8 @@
                                         <option value="general">General Donation</option>
                                         <option value="monthly">Monthly Chanda</option>
                                         <option value="jumma">Jumma Collection</option>
+                                        <option value="imam">Monthly Imam Sahab Salary</option>
+                                        <option value="festival">Festival Chanda</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -1066,6 +1184,26 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td>Imam Salary</td>
+                                            <td>0.00</td>
+                                            <td>0</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary generate-donation-report" data-type="imam">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Festival Chanda</td>
+                                            <td>0.00</td>
+                                            <td>0</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary generate-donation-report" data-type="festival">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td><strong>Total</strong></td>
                                             <td><strong>0.00</strong></td>
                                             <td><strong>0</strong></td>
@@ -1086,7 +1224,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
-                                                <th>Donor</th>
+                                                <th>Household</th>
                                                 <th>Amount (₹)</th>
                                                 <th>Type</th>
                                                 <th>Member</th>
@@ -1117,8 +1255,14 @@
                             <h6 class="mb-3">Add Construction Donation</h6>
                             <form id="constructionDonationForm">
                                 <div class="mb-3">
-                                    <label for="constructionDonor" class="form-label">Donor Name</label>
-                                    <input type="text" class="form-control" id="constructionDonor" placeholder="Enter donor name">
+                                    <label for="constructionHousehold" class="form-label">Household</label>
+                                    <select class="form-select" id="constructionHousehold">
+                                        <option value="">-- Select Household --</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="constructionMember" class="form-label">Committee Member</label>
+                                    <input type="text" class="form-control" id="constructionMember" placeholder="Committee member will be auto-selected" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <label for="constructionDonationAmount" class="form-label">Amount (₹)</label>
@@ -1187,7 +1331,8 @@
                                     <thead>
                                         <tr>
                                             <th>Date</th>
-                                            <th>Donor</th>
+                                            <th>Household</th>
+                                            <th>Member</th>
                                             <th>Amount (₹)</th>
                                             <th>Actions</th>
                                         </tr>
@@ -1376,6 +1521,7 @@
                                         <option value="education">Islamic Education</option>
                                         <option value="charity">Charity</option>
                                         <option value="other">Other</option>
+                                        <option value="construction">Construction</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -1449,6 +1595,16 @@
                                             <td>0</td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="other">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Construction</td>
+                                            <td>0.00</td>
+                                            <td>0</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary generate-chanda-report" data-purpose="construction">
                                                     <i class="fas fa-file-pdf"></i>
                                                 </button>
                                             </td>
@@ -1589,6 +1745,16 @@
                         <h3>किसका किसका चंदा बाकी है?</h3>
                         <p class="text-center mb-3">उन सभी लोगों की सूची जिन्होंने अभी तक चंदा नहीं दिया है</p>
                         
+                        <div class="mb-3">
+                            <label for="pendingChandaType" class="form-label">Select Chanda Type</label>
+                            <select class="form-select" id="pendingChandaType">
+                                <option value="monthly">Monthly Chanda</option>
+                                <option value="imam">Imam Salary</option>
+                                <option value="festival">Festival Chanda</option>
+                                <option value="construction">Construction Chanda</option>
+                            </select>
+                        </div>
+                        
                         <div id="pendingChandaList">
                             <!-- Pending chanda items will be added here dynamically -->
                         </div>
@@ -1638,6 +1804,14 @@
                         <div class="summary-item income">
                             <span>सामान्य चंदा:</span>
                             <span>₹<span id="summaryGeneralDonations">0.00</span></span>
+                        </div>
+                        <div class="summary-item income">
+                            <span>इमाम सैलरी:</span>
+                            <span>₹<span id="summaryImamSalary">0.00</span></span>
+                        </div>
+                        <div class="summary-item income">
+                            <span>त्योहार चंदा:</span>
+                            <span>₹<span id="summaryFestivalChanda">0.00</span></span>
                         </div>
                         <div class="summary-item income">
                             <span>निर्माण चंदा:</span>
@@ -1875,6 +2049,9 @@
             
             // Initialize pending chanda
             updatePendingChandaList();
+            
+            // Initialize committee positions
+            updateCommitteePositions();
         });
         
         // Set current date for all date fields
@@ -2177,6 +2354,21 @@
             document.getElementById('whatsappMessage').addEventListener('input', function() {
                 document.getElementById('whatsappPreviewText').textContent = this.value;
             });
+            
+            // Pending chanda type change
+            document.getElementById('pendingChandaType').addEventListener('change', function() {
+                updatePendingChandaList();
+            });
+            
+            // Construction household change
+            document.getElementById('constructionHousehold').addEventListener('change', function() {
+                updateConstructionMemberField();
+            });
+            
+            // Donation household change
+            document.getElementById('donationHousehold').addEventListener('change', function() {
+                updateDonationMemberField();
+            });
         }
         
         // Load data from localStorage
@@ -2241,7 +2433,6 @@
             const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
             const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
             const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
-            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
             
             // Calculate totals
             const jummaCollection = donations
@@ -2256,18 +2447,21 @@
                 .filter(d => d.type === 'general')
                 .reduce((sum, d) => sum + d.amount, 0);
             
+            const imamSalary = donations
+                .filter(d => d.type === 'imam')
+                .reduce((sum, d) => sum + d.amount, 0);
+            
+            const festivalChanda = donations
+                .filter(d => d.type === 'festival')
+                .reduce((sum, d) => sum + d.amount, 0);
+            
             const constructionDonationsTotal = constructionDonations
                 .reduce((sum, d) => sum + d.amount, 0);
             
             const chandaCollectionsTotal = chandaCollections
                 .reduce((sum, c) => sum + c.amount, 0);
             
-            const memberHouseholdDonations = memberHouseholdLinks
-                .reduce((sum, link) => {
-                    return sum + link.donations.reduce((donationSum, donation) => donationSum + donation.amount, 0);
-                }, 0);
-            
-            const totalIncome = jummaCollection + monthlyChanda + generalDonations + constructionDonationsTotal + chandaCollectionsTotal + memberHouseholdDonations;
+            const totalIncome = jummaCollection + monthlyChanda + generalDonations + imamSalary + festivalChanda + constructionDonationsTotal + chandaCollectionsTotal;
             
             const totalExpenses = constructionExpenses
                 .reduce((sum, e) => sum + e.amount, 0);
@@ -2278,6 +2472,8 @@
             document.getElementById('summaryJummaCollection').textContent = jummaCollection.toFixed(2);
             document.getElementById('summaryMonthlyChanda').textContent = monthlyChanda.toFixed(2);
             document.getElementById('summaryGeneralDonations').textContent = generalDonations.toFixed(2);
+            document.getElementById('summaryImamSalary').textContent = imamSalary.toFixed(2);
+            document.getElementById('summaryFestivalChanda').textContent = festivalChanda.toFixed(2);
             document.getElementById('summaryConstructionDonations').textContent = constructionDonationsTotal.toFixed(2);
             document.getElementById('summaryChandaCollections').textContent = chandaCollectionsTotal.toFixed(2);
             document.getElementById('summaryTotalIncome').textContent = totalIncome.toFixed(2);
@@ -2316,6 +2512,14 @@
                 .filter(d => d.type === 'general')
                 .reduce((sum, d) => sum + d.amount, 0);
             
+            const imamSalary = donations
+                .filter(d => d.type === 'imam')
+                .reduce((sum, d) => sum + d.amount, 0);
+            
+            const festivalChanda = donations
+                .filter(d => d.type === 'festival')
+                .reduce((sum, d) => sum + d.amount, 0);
+            
             const constructionDonationsTotal = constructionDonations
                 .reduce((sum, d) => sum + d.amount, 0);
             
@@ -2329,13 +2533,15 @@
             window.financialChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['जुम्मा', 'मासिक चंदा', 'सामान्य दान', 'निर्माण दान', 'चंद', 'खर्च'],
+                    labels: ['जुम्मा', 'मासिक चंदा', 'सामान्य दान', 'इमाम सैलरी', 'त्योहार चंदा', 'निर्माण दान', 'चंद', 'खर्च'],
                     datasets: [{
                         label: 'राशि (₹)',
                         data: [
                             jummaCollection,
                             monthlyChanda,
                             generalDonations,
+                            imamSalary,
+                            festivalChanda,
                             constructionDonationsTotal,
                             chandaCollectionsTotal,
                             -totalExpenses
@@ -2346,12 +2552,16 @@
                             'rgba(153, 102, 255, 0.7)',
                             'rgba(255, 159, 64, 0.7)',
                             'rgba(255, 99, 132, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(255, 99, 132, 0.7)',
                             'rgba(255, 99, 132, 0.7)'
                         ],
                         borderColor: [
                             'rgba(54, 162, 235, 1)',
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 99, 132, 1)',
                             'rgba(255, 159, 64, 1)',
                             'rgba(255, 99, 132, 1)',
                             'rgba(255, 99, 132, 1)'
@@ -2401,6 +2611,14 @@
                 .filter(d => d.type === 'general')
                 .reduce((sum, d) => sum + d.amount, 0);
             
+            const imamSalary = donations
+                .filter(d => d.type === 'imam')
+                .reduce((sum, d) => sum + d.amount, 0);
+            
+            const festivalChanda = donations
+                .filter(d => d.type === 'festival')
+                .reduce((sum, d) => sum + d.amount, 0);
+            
             const constructionDonationsTotal = constructionDonations
                 .reduce((sum, d) => sum + d.amount, 0);
             
@@ -2415,6 +2633,8 @@
                 jummaCollection,
                 monthlyChanda,
                 generalDonations,
+                imamSalary,
+                festivalChanda,
                 constructionDonationsTotal,
                 chandaCollectionsTotal,
                 -totalExpenses
@@ -2511,7 +2731,6 @@
             const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
             const constructionExpenses = JSON.parse(localStorage.getItem('constructionExpenses')) || [];
             const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
-            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
             
             // Filter data by date range
             const filteredDonations = donations.filter(d => {
@@ -2550,17 +2769,24 @@
                 .filter(d => d.type === 'general')
                 .reduce((sum, d) => sum + d.amount, 0);
             
+            const imamSalary = filteredDonations
+                .filter(d => d.type === 'imam')
+                .reduce((sum, d) => sum + d.amount, 0);
+            
+            const festivalChanda = filteredDonations
+                .filter(d => d.type === 'festival')
+                .reduce((sum, d) => sum + d.amount, 0);
+            
             const constructionDonationsTotal = filteredConstructionDonations
                 .reduce((sum, d) => sum + d.amount, 0);
             
             const chandaCollectionsTotal = filteredChandaCollections
                 .reduce((sum, c) => sum + c.amount, 0);
             
-            const constructionExpensesTotal = filteredConstructionExpenses
-                .reduce((sum, e) => sum + e.amount, 0);
+            totalIncome = jummaCollection + monthlyChanda + generalDonations + imamSalary + festivalChanda + constructionDonationsTotal + chandaCollectionsTotal;
             
-            totalIncome = jummaCollection + monthlyChanda + generalDonations + constructionDonationsTotal + chandaCollectionsTotal;
-            totalExpenses = constructionExpensesTotal;
+            totalExpenses = filteredConstructionExpenses
+                .reduce((sum, e) => sum + e.amount, 0);
             
             const totalBalance = totalIncome - totalExpenses;
             
@@ -2629,6 +2855,14 @@
                                     <td>सामान्य दान</td>
                                     <td>₹${generalDonations.toFixed(2)}</td>
                                 </tr>
+                                <tr>
+                                    <td>इमाम सैलरी</td>
+                                    <td>₹${imamSalary.toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <td>त्योहार चंदा</td>
+                                    <td>₹${festivalChanda.toFixed(2)}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -2654,7 +2888,7 @@
                                 </tr>
                                 <tr>
                                     <td>निर्माण खर्च</td>
-                                    <td>₹${constructionExpensesTotal.toFixed(2)}</td>
+                                    <td>₹${totalExpenses.toFixed(2)}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -2771,8 +3005,8 @@
         // Add committee member
         function addCommitteeMember() {
             const name = document.getElementById('memberName').value;
+            const position = document.getElementById('memberPosition').value;
             const phone = document.getElementById('memberPhone').value;
-            const email = document.getElementById('memberEmail').value;
             
             if (!name) {
                 showToast('Please enter member name', 'error');
@@ -2783,8 +3017,8 @@
             const newMember = {
                 id: Date.now(),
                 name,
-                phone,
-                email
+                position,
+                phone
             };
             
             committeeMembers.push(newMember);
@@ -2792,6 +3026,7 @@
             
             updateCommitteeMembersTable(committeeMembers);
             updateCommitteeMemberSelects(committeeMembers);
+            updateCommitteePositions();
             
             document.getElementById('committeeMemberForm').reset();
             showToast('Committee member added successfully!', 'success');
@@ -2806,8 +3041,8 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${member.name}</td>
+                    <td>${member.position || '-'}</td>
                     <td>${member.phone || '-'}</td>
-                    <td>${member.email || '-'}</td>
                     <td>
                         <button class="btn btn-sm btn-outline-primary me-1 edit-member" data-id="${member.id}">
                             <i class="fas fa-edit"></i>
@@ -2843,8 +3078,8 @@
             
             if (member) {
                 document.getElementById('memberName').value = member.name;
+                document.getElementById('memberPosition').value = member.position || '';
                 document.getElementById('memberPhone').value = member.phone || '';
-                document.getElementById('memberEmail').value = member.email || '';
                 
                 // Remove the member from the array
                 const updatedMembers = committeeMembers.filter(m => m.id !== id);
@@ -2852,6 +3087,7 @@
                 
                 updateCommitteeMembersTable(updatedMembers);
                 updateCommitteeMemberSelects(updatedMembers);
+                updateCommitteePositions();
                 
                 showToast('Member details loaded for editing', 'success');
             }
@@ -2866,6 +3102,7 @@
                 
                 updateCommitteeMembersTable(updatedMembers);
                 updateCommitteeMemberSelects(updatedMembers);
+                updateCommitteePositions();
                 
                 showToast('Member deleted successfully', 'success');
             }
@@ -2896,6 +3133,93 @@
                 if (currentValue) {
                     select.value = currentValue;
                 }
+            });
+        }
+        
+        // Update committee positions
+        function updateCommitteePositions() {
+            const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
+            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
+            const households = JSON.parse(localStorage.getItem('households')) || [];
+            
+            // Group members by position
+            const positions = {};
+            
+            committeeMembers.forEach(member => {
+                const position = member.position || 'No Position';
+                
+                if (!positions[position]) {
+                    positions[position] = [];
+                }
+                
+                positions[position].push(member);
+            });
+            
+            // Create position sections
+            const container = document.getElementById('committeePositionsContainer');
+            container.innerHTML = '';
+            
+            Object.keys(positions).forEach(position => {
+                const positionDiv = document.createElement('div');
+                positionDiv.className = 'committee-position';
+                
+                const positionTitle = document.createElement('h6');
+                positionTitle.textContent = position;
+                positionDiv.appendChild(positionTitle);
+                
+                const membersList = document.createElement('div');
+                membersList.className = 'committee-members-list';
+                
+                positions[position].forEach(member => {
+                    // Find linked households
+                    const linkedHouseholds = memberHouseholdLinks
+                        .filter(link => link.memberId === member.id)
+                        .map(link => households.find(h => h.id === link.householdId))
+                        .filter(household => household);
+                    
+                    const memberItem = document.createElement('div');
+                    memberItem.className = 'committee-member-item';
+                    
+                    const memberInfo = document.createElement('div');
+                    memberInfo.className = 'committee-member-name';
+                    memberInfo.textContent = member.name;
+                    
+                    const memberActions = document.createElement('div');
+                    memberActions.className = 'committee-member-actions';
+                    
+                    const editButton = document.createElement('button');
+                    editButton.className = 'btn btn-sm btn-outline-primary';
+                    editButton.innerHTML = '<i class="fas fa-edit"></i>';
+                    editButton.addEventListener('click', function() {
+                        editCommitteeMember(member.id);
+                    });
+                    
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'btn btn-sm btn-outline-danger';
+                    deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+                    deleteButton.addEventListener('click', function() {
+                        deleteCommitteeMember(member.id);
+                    });
+                    
+                    memberActions.appendChild(editButton);
+                    memberActions.appendChild(deleteButton);
+                    
+                    memberItem.appendChild(memberInfo);
+                    memberItem.appendChild(memberActions);
+                    
+                    // Add household info if any
+                    if (linkedHouseholds.length > 0) {
+                        const householdInfo = document.createElement('div');
+                        householdInfo.className = 'small text-muted mt-1';
+                        householdInfo.textContent = `Household: ${linkedHouseholds.map(h => h.name).join(', ')}`;
+                        memberItem.appendChild(householdInfo);
+                    }
+                    
+                    membersList.appendChild(memberItem);
+                });
+                
+                positionDiv.appendChild(membersList);
+                container.appendChild(positionDiv);
             });
         }
         
@@ -3004,26 +3328,30 @@
         
         // Update household selects
         function updateHouseholdSelects(households) {
-            const select = document.getElementById('selectHousehold');
-            const currentValue = select.value;
+            const selects = ['selectHousehold', 'donationHousehold', 'constructionHousehold'];
             
-            // Clear options except the first one
-            while (select.children.length > 1) {
-                select.removeChild(select.lastChild);
-            }
-            
-            // Add household options
-            households.forEach(household => {
-                const option = document.createElement('option');
-                option.value = household.id;
-                option.textContent = household.name;
-                select.appendChild(option);
+            selects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                const currentValue = select.value;
+                
+                // Clear options except the first one
+                while (select.children.length > 1) {
+                    select.removeChild(select.lastChild);
+                }
+                
+                // Add household options
+                households.forEach(household => {
+                    const option = document.createElement('option');
+                    option.value = household.id;
+                    option.textContent = household.name;
+                    select.appendChild(option);
+                });
+                
+                // Restore selected value if it still exists
+                if (currentValue) {
+                    select.value = currentValue;
+                }
             });
-            
-            // Restore selected value if it still exists
-            if (currentValue) {
-                select.value = currentValue;
-            }
         }
         
         // Link household to member
@@ -3053,14 +3381,14 @@
             const newLink = {
                 id: Date.now(),
                 memberId: parseInt(memberId),
-                householdId: parseInt(householdId),
-                donations: []
+                householdId: parseInt(householdId)
             };
             
             memberHouseholdLinks.push(newLink);
             localStorage.setItem('memberHouseholdLinks', JSON.stringify(memberHouseholdLinks));
             
             updateMemberHouseholdLinksTable(memberHouseholdLinks);
+            updateCommitteePositions();
             
             document.getElementById('linkHouseholdForm').reset();
             showToast('Household linked to member successfully!', 'success');
@@ -3079,17 +3407,11 @@
                 const household = households.find(h => h.id === link.householdId);
                 
                 if (member && household) {
-                    const totalDonations = link.donations.reduce((sum, donation) => sum + donation.amount, 0);
-                    
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${member.name}</td>
                         <td>${household.name}</td>
-                        <td>₹${totalDonations.toFixed(2)}</td>
                         <td>
-                            <button class="btn btn-sm btn-outline-primary me-1 track-donation" data-id="${link.id}">
-                                <i class="fas fa-money-bill-wave"></i>
-                            </button>
                             <button class="btn btn-sm btn-outline-danger delete-link" data-id="${link.id}">
                                 <i class="fas fa-unlink"></i>
                             </button>
@@ -3100,55 +3422,12 @@
             });
             
             // Add event listeners
-            document.querySelectorAll('.track-donation').forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    trackDonation(id);
-                });
-            });
-            
             document.querySelectorAll('.delete-link').forEach(button => {
                 button.addEventListener('click', function() {
                     const id = parseInt(this.getAttribute('data-id'));
                     deleteMemberHouseholdLink(id);
                 });
             });
-        }
-        
-        // Track donation for member-household link
-        function trackDonation(linkId) {
-            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
-            const link = memberHouseholdLinks.find(l => l.id === linkId);
-            
-            if (!link) return;
-            
-            const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
-            const households = JSON.parse(localStorage.getItem('households')) || [];
-            
-            const member = committeeMembers.find(m => m.id === link.memberId);
-            const household = households.find(h => h.id === link.householdId);
-            
-            if (!member || !household) return;
-            
-            const amount = prompt(`Enter donation amount for ${household.name} (linked to ${member.name}):`);
-            
-            if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
-                const donation = {
-                    id: Date.now(),
-                    amount: parseFloat(amount),
-                    date: new Date().toISOString().split('T')[0]
-                };
-                
-                link.donations.push(donation);
-                localStorage.setItem('memberHouseholdLinks', JSON.stringify(memberHouseholdLinks));
-                
-                updateMemberHouseholdLinksTable(memberHouseholdLinks);
-                updateSummarySection();
-                
-                showToast('Donation recorded successfully!', 'success');
-            } else if (amount !== null) {
-                showToast('Please enter a valid amount', 'error');
-            }
         }
         
         // Delete member-household link
@@ -3159,22 +3438,79 @@
                 localStorage.setItem('memberHouseholdLinks', JSON.stringify(updatedLinks));
                 
                 updateMemberHouseholdLinksTable(updatedLinks);
+                updateCommitteePositions();
                 
                 showToast('Link deleted successfully', 'success');
             }
         }
         
+        // Update construction member field
+        function updateConstructionMemberField() {
+            const householdId = document.getElementById('constructionHousehold').value;
+            const memberField = document.getElementById('constructionMember');
+            
+            if (!householdId) {
+                memberField.value = '';
+                return;
+            }
+            
+            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
+            const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
+            
+            const link = memberHouseholdLinks.find(l => l.householdId == householdId);
+            
+            if (link) {
+                const member = committeeMembers.find(m => m.id === link.memberId);
+                if (member) {
+                    memberField.value = member.name;
+                } else {
+                    memberField.value = '';
+                }
+            } else {
+                memberField.value = '';
+            }
+        }
+        
+        // Update donation member field
+        function updateDonationMemberField() {
+            const householdId = document.getElementById('donationHousehold').value;
+            const memberSelect = document.getElementById('responsibleMember');
+            
+            if (!householdId) {
+                memberSelect.value = '';
+                return;
+            }
+            
+            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
+            
+            const link = memberHouseholdLinks.find(l => l.householdId == householdId);
+            
+            if (link) {
+                memberSelect.value = link.memberId;
+            } else {
+                memberSelect.value = '';
+            }
+        }
+        
         // Add donation
         function addDonation() {
-            const donorName = document.getElementById('donorName').value;
+            const householdId = document.getElementById('donationHousehold').value;
             const amount = parseFloat(document.getElementById('donationAmount').value);
             const date = document.getElementById('donationDate').value;
             const type = document.getElementById('donationType').value;
             const memberId = document.getElementById('responsibleMember').value;
             const receiptFile = document.getElementById('donationReceipt').files[0];
             
-            if (!donorName || !amount || amount <= 0 || !date) {
+            if (!householdId || !amount || amount <= 0 || !date) {
                 showToast('Please fill all required fields with valid values', 'error');
+                return;
+            }
+            
+            const households = JSON.parse(localStorage.getItem('households')) || [];
+            const household = households.find(h => h.id == householdId);
+            
+            if (!household) {
+                showToast('Household not found', 'error');
                 return;
             }
             
@@ -3189,7 +3525,8 @@
                     
                     const newDonation = {
                         id: Date.now(),
-                        donorName,
+                        householdId: parseInt(householdId),
+                        householdName: household.name,
                         amount,
                         date,
                         type,
@@ -3212,7 +3549,8 @@
             } else {
                 const newDonation = {
                     id: Date.now(),
-                    donorName,
+                    householdId: parseInt(householdId),
+                    householdName: household.name,
                     amount,
                     date,
                     type,
@@ -3252,7 +3590,7 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${formatDate(donation.date)}</td>
-                    <td>${donation.donorName}</td>
+                    <td>${donation.householdName}</td>
                     <td>₹${donation.amount.toFixed(2)}</td>
                     <td>${getDonationTypeLabel(donation.type)}</td>
                     <td>${member ? member.name : '-'}</td>
@@ -3289,7 +3627,9 @@
             const summary = {
                 general: { total: 0, count: 0 },
                 monthly: { total: 0, count: 0 },
-                jumma: { total: 0, count: 0 }
+                jumma: { total: 0, count: 0 },
+                imam: { total: 0, count: 0 },
+                festival: { total: 0, count: 0 }
             };
             
             donations.forEach(donation => {
@@ -3310,12 +3650,18 @@
             rows[2].cells[1].textContent = summary.jumma.total.toFixed(2);
             rows[2].cells[2].textContent = summary.jumma.count;
             
-            // Update total row
-            const totalAmount = summary.general.total + summary.monthly.total + summary.jumma.total;
-            const totalCount = summary.general.count + summary.monthly.count + summary.jumma.count;
+            rows[3].cells[1].textContent = summary.imam.total.toFixed(2);
+            rows[3].cells[2].textContent = summary.imam.count;
             
-            rows[3].cells[1].textContent = totalAmount.toFixed(2);
-            rows[3].cells[2].textContent = totalCount;
+            rows[4].cells[1].textContent = summary.festival.total.toFixed(2);
+            rows[4].cells[2].textContent = summary.festival.count;
+            
+            // Update total row
+            const totalAmount = Object.values(summary).reduce((sum, item) => sum + item.total, 0);
+            const totalCount = Object.values(summary).reduce((sum, item) => sum + item.count, 0);
+            
+            rows[5].cells[1].textContent = totalAmount.toFixed(2);
+            rows[5].cells[2].textContent = totalCount;
         }
         
         // Get donation type label
@@ -3323,7 +3669,9 @@
             const labels = {
                 general: 'General',
                 monthly: 'Monthly Chanda',
-                jumma: 'Jumma Collection'
+                jumma: 'Jumma Collection',
+                imam: 'Imam Salary',
+                festival: 'Festival Chanda'
             };
             
             return labels[type] || type;
@@ -3351,7 +3699,7 @@
                 
                 <div class="mb-4">
                     <p><strong>Date:</strong> ${formatDate(donation.date)}</p>
-                    <p><strong>Donor Name:</strong> ${donation.donorName}</p>
+                    <p><strong>Household:</strong> ${donation.householdName}</p>
                     <p><strong>Amount:</strong> ₹${donation.amount.toFixed(2)}</p>
                     <p><strong>Donation Type:</strong> ${getDonationTypeLabel(donation.type)}</p>
                     <p><strong>Responsible Member:</strong> ${member ? member.name : '-'}</p>
@@ -3409,15 +3757,29 @@
         
         // Add construction donation
         function addConstructionDonation() {
-            const donor = document.getElementById('constructionDonor').value;
+            const householdId = document.getElementById('constructionHousehold').value;
             const amount = parseFloat(document.getElementById('constructionDonationAmount').value);
             const date = document.getElementById('constructionDonationDate').value;
             const receiptFile = document.getElementById('constructionDonationReceipt').files[0];
             
-            if (!donor || !amount || amount <= 0 || !date) {
+            if (!householdId || !amount || amount <= 0 || !date) {
                 showToast('Please fill all required fields with valid values', 'error');
                 return;
             }
+            
+            const households = JSON.parse(localStorage.getItem('households')) || [];
+            const household = households.find(h => h.id == householdId);
+            
+            if (!household) {
+                showToast('Household not found', 'error');
+                return;
+            }
+            
+            const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
+            const committeeMembers = JSON.parse(localStorage.getItem('committeeMembers')) || [];
+            
+            const link = memberHouseholdLinks.find(l => l.householdId == householdId);
+            const member = link ? committeeMembers.find(m => m.id === link.memberId) : null;
             
             const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
             
@@ -3430,7 +3792,10 @@
                     
                     const newDonation = {
                         id: Date.now(),
-                        donor,
+                        householdId: parseInt(householdId),
+                        householdName: household.name,
+                        memberId: member ? member.id : null,
+                        memberName: member ? member.name : null,
                         amount,
                         date,
                         receipt: receiptData
@@ -3454,7 +3819,10 @@
             } else {
                 const newDonation = {
                     id: Date.now(),
-                    donor,
+                    householdId: parseInt(householdId),
+                    householdName: household.name,
+                    memberId: member ? member.id : null,
+                    memberName: member ? member.name : null,
                     amount,
                     date,
                     receipt: null
@@ -3488,7 +3856,8 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${formatDate(donation.date)}</td>
-                    <td>${donation.donor}</td>
+                    <td>${donation.householdName}</td>
+                    <td>${donation.memberName || '-'}</td>
                     <td>₹${donation.amount.toFixed(2)}</td>
                     <td>
                         <button class="btn btn-sm btn-outline-primary me-1 view-construction-donation" data-id="${donation.id}">
@@ -3544,7 +3913,8 @@
                 
                 <div class="mb-4">
                     <p><strong>Date:</strong> ${formatDate(donation.date)}</p>
-                    <p><strong>Donor:</strong> ${donation.donor}</p>
+                    <p><strong>Household:</strong> ${donation.householdName}</p>
+                    <p><strong>Member:</strong> ${donation.memberName || '-'}</p>
                     <p><strong>Amount:</strong> ₹${donation.amount.toFixed(2)}</p>
                 </div>
                 
@@ -4108,7 +4478,8 @@
                 maintenance: { total: 0, count: 0 },
                 education: { total: 0, count: 0 },
                 charity: { total: 0, count: 0 },
-                other: { total: 0, count: 0 }
+                other: { total: 0, count: 0 },
+                construction: { total: 0, count: 0 }
             };
             
             collections.forEach(collection => {
@@ -4135,12 +4506,15 @@
             rows[4].cells[1].textContent = summary.other.total.toFixed(2);
             rows[4].cells[2].textContent = summary.other.count;
             
+            rows[5].cells[1].textContent = summary.construction.total.toFixed(2);
+            rows[5].cells[2].textContent = summary.construction.count;
+            
             // Update total row
             const totalAmount = Object.values(summary).reduce((sum, item) => sum + item.total, 0);
             const totalCount = Object.values(summary).reduce((sum, item) => sum + item.count, 0);
             
-            rows[5].cells[1].textContent = totalAmount.toFixed(2);
-            rows[5].cells[2].textContent = totalCount;
+            rows[6].cells[1].textContent = totalAmount.toFixed(2);
+            rows[6].cells[2].textContent = totalCount;
         }
         
         // Get chanda purpose label
@@ -4150,7 +4524,8 @@
                 maintenance: 'Masjid Maintenance',
                 education: 'Islamic Education',
                 charity: 'Charity',
-                other: 'Other'
+                other: 'Other',
+                construction: 'Construction'
             };
             
             return labels[purpose] || purpose;
@@ -4355,10 +4730,12 @@
             const pendingChandaList = document.getElementById('pendingChandaList');
             pendingChandaList.innerHTML = '';
             
+            // Get selected chanda type
+            const chandaType = document.getElementById('pendingChandaType').value;
+            
             // Get all households
             const households = JSON.parse(localStorage.getItem('households')) || [];
             const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
-            const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
             
             // Get current month and year
             const now = new Date();
@@ -4371,13 +4748,46 @@
                 const link = memberHouseholdLinks.find(l => l.householdId === household.id);
                 
                 if (link) {
-                    // Check if household has paid chanda for current month
-                    const hasPaid = chandaCollections.some(c => {
-                        const collectionDate = new Date(c.date);
-                        return collectionDate.getMonth() === currentMonth && 
-                               collectionDate.getFullYear() === currentYear &&
-                               c.donor === household.name;
-                    });
+                    let hasPaid = false;
+                    
+                    if (chandaType === 'monthly') {
+                        // Check if household has paid monthly chanda for current month
+                        const donations = JSON.parse(localStorage.getItem('donations')) || [];
+                        hasPaid = donations.some(d => {
+                            const donationDate = new Date(d.date);
+                            return donationDate.getMonth() === currentMonth && 
+                                   donationDate.getFullYear() === currentYear &&
+                                   d.type === 'monthly' &&
+                                   d.householdId === household.id;
+                        });
+                    } else if (chandaType === 'imam') {
+                        // Check if household has paid imam salary for current month
+                        const donations = JSON.parse(localStorage.getItem('donations')) || [];
+                        hasPaid = donations.some(d => {
+                            const donationDate = new Date(d.date);
+                            return donationDate.getMonth() === currentMonth && 
+                                   donationDate.getFullYear() === currentYear &&
+                                   d.type === 'imam' &&
+                                   d.householdId === household.id;
+                        });
+                    } else if (chandaType === 'festival') {
+                        // Check if household has paid festival chanda for current year
+                        const donations = JSON.parse(localStorage.getItem('donations')) || [];
+                        hasPaid = donations.some(d => {
+                            const donationDate = new Date(d.date);
+                            return donationDate.getFullYear() === currentYear &&
+                                   d.type === 'festival' &&
+                                   d.householdId === household.id;
+                        });
+                    } else if (chandaType === 'construction') {
+                        // Check if household has paid construction chanda for current year
+                        const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+                        hasPaid = constructionDonations.some(d => {
+                            const donationDate = new Date(d.date);
+                            return donationDate.getFullYear() === currentYear &&
+                                   d.householdId === household.id;
+                        });
+                    }
                     
                     if (!hasPaid) {
                         // Add to pending list
@@ -4389,10 +4799,10 @@
                                 ${household.phone ? `<br><small>${household.phone}</small>` : ''}
                             </div>
                             <div class="pending-chanda-actions">
-                                <button class="btn btn-sm btn-success send-whatsapp-reminder" data-id="${household.id}" data-name="${household.name}" data-phone="${household.phone || ''}">
+                                <button class="btn btn-sm btn-success send-whatsapp-reminder" data-id="${household.id}" data-name="${household.name}" data-phone="${household.phone || ''}" data-type="${chandaType}">
                                     <i class="fab fa-whatsapp"></i>
                                 </button>
-                                <button class="btn btn-sm btn-primary mark-as-paid" data-id="${household.id}" data-name="${household.name}">
+                                <button class="btn btn-sm btn-primary mark-as-paid" data-id="${household.id}" data-name="${household.name}" data-type="${chandaType}">
                                     <i class="fas fa-check"></i>
                                 </button>
                             </div>
@@ -4408,7 +4818,8 @@
                     const householdId = this.getAttribute('data-id');
                     const householdName = this.getAttribute('data-name');
                     const householdPhone = this.getAttribute('data-phone');
-                    sendWhatsAppReminder(householdId, householdName, householdPhone);
+                    const chandaType = this.getAttribute('data-type');
+                    sendWhatsAppReminder(householdId, householdName, householdPhone, chandaType);
                 });
             });
             
@@ -4416,7 +4827,8 @@
                 button.addEventListener('click', function() {
                     const householdId = this.getAttribute('data-id');
                     const householdName = this.getAttribute('data-name');
-                    markAsPaid(householdId, householdName);
+                    const chandaType = this.getAttribute('data-type');
+                    markAsPaid(householdId, householdName, chandaType);
                 });
             });
             
@@ -4426,24 +4838,51 @@
                     <div class="text-center py-3">
                         <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
                         <p>कोई भी बकाया चंदा नहीं है!</p>
-                        <p class="text-muted">All households have paid their chanda for this month.</p>
+                        <p class="text-muted">All households have paid their ${getChandaTypeLabel(chandaType)} for this period.</p>
                     </div>
                 `;
             }
         }
         
+        // Get chanda type label for pending chanda
+        function getChandaTypeLabel(type) {
+            const labels = {
+                monthly: 'monthly chanda',
+                imam: 'imam salary',
+                festival: 'festival chanda',
+                construction: 'construction chanda'
+            };
+            
+            return labels[type] || type;
+        }
+        
         // Send WhatsApp reminder
-        function sendWhatsAppReminder(householdId, householdName, householdPhone) {
+        function sendWhatsAppReminder(householdId, householdName, householdPhone, chandaType) {
             // Get masjid info
             const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
             
             // Create message in Hindi and English
-            const hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}`;
+            let hindiMessage, englishMessage, subject;
             
-            const englishMessage = `Assalamwalaikum ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
+            if (chandaType === 'monthly') {
+                subject = 'मासिक चंदा / Monthly Chanda';
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nआपका मासिक चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour monthly chanda is still pending. Please submit your chanda as soon as possible.`;
+            } else if (chandaType === 'imam') {
+                subject = 'इमाम साहब की सैलरी / Imam Sahab Salary';
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nइमाम साहब की सैलरी के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for Imam Sahab's salary is still pending. Please submit it as soon as possible.`;
+            } else if (chandaType === 'festival') {
+                subject = 'त्योहार चंदा / Festival Chanda';
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nत्योहार चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour festival chanda is still pending. Please submit it as soon as possible.`;
+            } else if (chandaType === 'construction') {
+                subject = 'निर्माण चंदा / Construction Chanda';
+                hindiMessage = `अस्सलामवलैकुम ${householdName},\n\nमस्जिद के निर्माण के लिए आपका चंदा अभी तक जमा नहीं हुआ है। कृपया जल्द से जल्द अपना चंदा जमा करवाएं।`;
+                englishMessage = `Assalamwalaikum ${householdName},\n\nYour contribution for masjid construction is still pending. Please submit it as soon as possible.`;
+            }
             
-            // Combine messages
-            const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}`;
+            const combinedMessage = `${hindiMessage}\n\n---\n\n${englishMessage}\n\nशुक्रिया,\n${masjidInfo.name || 'मस्जिद'}\n\nThanks,\n${masjidInfo.name || 'Masjid'}`;
             
             // Get WhatsApp numbers
             const whatsappNumbers = masjidInfo.whatsappNumbers || [];
@@ -4471,16 +4910,30 @@
             document.getElementById('whatsappMessage').value = combinedMessage;
             document.getElementById('whatsappPreviewText').textContent = combinedMessage;
             
-            // Update image preview
+            // Update image preview with masjid QR code
             const imagePreview = document.getElementById('whatsappImagePreview');
-            imagePreview.innerHTML = `<p class="text-muted">No image attached</p>`;
+            if (masjidInfo.logo) {
+                imagePreview.innerHTML = `<img src="${masjidInfo.logo}" alt="Masjid Logo" style="max-width: 200px; max-height: 200px;">`;
+            } else {
+                imagePreview.innerHTML = `<p class="text-muted">Masjid QR code will appear here</p>`;
+                
+                // Generate QR code for masjid info
+                setTimeout(() => {
+                    imagePreview.innerHTML = '';
+                    new QRCode(imagePreview, {
+                        text: `${masjidInfo.name || 'Masjid'}\n${masjidInfo.address || 'Address'}`,
+                        width: 200,
+                        height: 200
+                    });
+                }, 100);
+            }
             
             // Show modal
             modal.show();
         }
         
         // Mark as paid
-        function markAsPaid(householdId, householdName) {
+        function markAsPaid(householdId, householdName, chandaType) {
             // Get current date
             const now = new Date();
             const formattedDate = formatDateForInput(now);
@@ -4502,28 +4955,48 @@
             // Find member
             const member = committeeMembers.find(m => m.id === link.memberId);
             
-            // Add donation to link
-            const donation = {
-                id: Date.now(),
-                amount: 0, // Will be set by user
-                date: formattedDate
-            };
-            
             // Ask for amount
-            const amount = prompt(`Enter chanda amount for ${householdName}:`);
+            let amount, donationType;
+            
+            if (chandaType === 'monthly') {
+                amount = prompt(`Enter monthly chanda amount for ${householdName}:`);
+                donationType = 'monthly';
+            } else if (chandaType === 'imam') {
+                amount = prompt(`Enter Imam Sahab salary amount for ${householdName}:`);
+                donationType = 'imam';
+            } else if (chandaType === 'festival') {
+                amount = prompt(`Enter festival chanda amount for ${householdName}:`);
+                donationType = 'festival';
+            } else if (chandaType === 'construction') {
+                amount = prompt(`Enter construction chanda amount for ${householdName}:`);
+                donationType = 'construction';
+            }
             
             if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
-                donation.amount = parseFloat(amount);
+                // Add donation
+                const donations = JSON.parse(localStorage.getItem('donations')) || [];
                 
-                link.donations.push(donation);
-                localStorage.setItem('memberHouseholdLinks', JSON.stringify(memberHouseholdLinks));
+                const newDonation = {
+                    id: Date.now(),
+                    householdId: parseInt(householdId),
+                    householdName: household.name,
+                    amount: parseFloat(amount),
+                    date: formattedDate,
+                    type: donationType,
+                    memberId: member ? member.id : null,
+                    receipt: null
+                };
+                
+                donations.push(newDonation);
+                localStorage.setItem('donations', JSON.stringify(donations));
                 
                 // Update tables
-                updateMemberHouseholdLinksTable(memberHouseholdLinks);
+                updateDonationsTable(donations);
+                updateDonationSummary(donations);
                 updatePendingChandaList();
                 updateSummarySection();
                 
-                showToast(`${householdName} marked as paid`, 'success');
+                showToast(`${householdName} marked as paid for ${getChandaTypeLabel(chandaType)}`, 'success');
             } else if (amount !== null) {
                 showToast('Please enter a valid amount', 'error');
             }
@@ -4531,6 +5004,9 @@
         
         // Send WhatsApp alerts to all pending
         function sendWhatsAppAlerts() {
+            // Get selected chanda type
+            const chandaType = document.getElementById('pendingChandaType').value;
+            
             // Get masjid info
             const masjidInfo = JSON.parse(localStorage.getItem('masjidInfo')) || {};
             
@@ -4545,7 +5021,6 @@
             // Get all pending households
             const households = JSON.parse(localStorage.getItem('households')) || [];
             const memberHouseholdLinks = JSON.parse(localStorage.getItem('memberHouseholdLinks')) || [];
-            const chandaCollections = JSON.parse(localStorage.getItem('chandaCollections')) || [];
             
             // Get current month and year
             const now = new Date();
@@ -4557,12 +5032,46 @@
                 const link = memberHouseholdLinks.find(l => l.householdId === household.id);
                 
                 if (link) {
-                    const hasPaid = chandaCollections.some(c => {
-                        const collectionDate = new Date(c.date);
-                        return collectionDate.getMonth() === currentMonth && 
-                               collectionDate.getFullYear() === currentYear &&
-                               c.donor === household.name;
-                    });
+                    let hasPaid = false;
+                    
+                    if (chandaType === 'monthly') {
+                        // Check if household has paid monthly chanda for current month
+                        const donations = JSON.parse(localStorage.getItem('donations')) || [];
+                        hasPaid = donations.some(d => {
+                            const donationDate = new Date(d.date);
+                            return donationDate.getMonth() === currentMonth && 
+                                   donationDate.getFullYear() === currentYear &&
+                                   d.type === 'monthly' &&
+                                   d.householdId === household.id;
+                        });
+                    } else if (chandaType === 'imam') {
+                        // Check if household has paid imam salary for current month
+                        const donations = JSON.parse(localStorage.getItem('donations')) || [];
+                        hasPaid = donations.some(d => {
+                            const donationDate = new Date(d.date);
+                            return donationDate.getMonth() === currentMonth && 
+                                   donationDate.getFullYear() === currentYear &&
+                                   d.type === 'imam' &&
+                                   d.householdId === household.id;
+                        });
+                    } else if (chandaType === 'festival') {
+                        // Check if household has paid festival chanda for current year
+                        const donations = JSON.parse(localStorage.getItem('donations')) || [];
+                        hasPaid = donations.some(d => {
+                            const donationDate = new Date(d.date);
+                            return donationDate.getFullYear() === currentYear &&
+                                   d.type === 'festival' &&
+                                   d.householdId === household.id;
+                        });
+                    } else if (chandaType === 'construction') {
+                        // Check if household has paid construction chanda for current year
+                        const constructionDonations = JSON.parse(localStorage.getItem('constructionDonations')) || [];
+                        hasPaid = constructionDonations.some(d => {
+                            const donationDate = new Date(d.date);
+                            return donationDate.getFullYear() === currentYear &&
+                                   d.householdId === household.id;
+                        });
+                    }
                     
                     return !hasPaid;
                 }
@@ -4571,16 +5080,16 @@
             });
             
             if (pendingHouseholds.length === 0) {
-                showToast('No pending chanda found', 'success');
+                showToast(`No pending ${getChandaTypeLabel(chandaType)} found`, 'success');
                 return;
             }
             
             // Show confirmation
-            if (confirm(`Send WhatsApp reminders to ${pendingHouseholds.length} households?`)) {
+            if (confirm(`Send WhatsApp reminders to ${pendingHouseholds.length} households for ${getChandaTypeLabel(chandaType)}?`)) {
                 // Generate and send reminders for each household
                 pendingHouseholds.forEach((household, index) => {
                     setTimeout(() => {
-                        sendWhatsAppReminder(household.id, household.name, household.phone || '');
+                        sendWhatsAppReminder(household.id, household.name, household.phone || '', chandaType);
                     }, index * 1000); // Delay each message by 1 second
                 });
                 
@@ -4608,80 +5117,97 @@
                     <h2>${masjidInfo.name || 'Masjid'} Committee Members & Households Report</h2>
                     <div class="arabic-text">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
                 </div>
-                
-                <div class="mb-4">
-                    <h5>Committee Members</h5>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Linked Households</th>
-                            </tr>
-                        </thead>
-                        <tbody>
             `;
+            
+            // Group members by position
+            const positions = {};
             
             committeeMembers.forEach(member => {
-                const linkedHouseholds = memberHouseholdLinks.filter(link => link.memberId === member.id);
-                const householdNames = linkedHouseholds.map(link => {
-                    const household = households.find(h => h.id === link.householdId);
-                    return household ? household.name : '';
-                }).filter(name => name).join(', ');
+                const position = member.position || 'No Position';
+                
+                if (!positions[position]) {
+                    positions[position] = [];
+                }
+                
+                positions[position].push(member);
+            });
+            
+            // Add position sections
+            Object.keys(positions).forEach(position => {
+                content += `
+                    <div class="mb-4">
+                        <h5>${position}</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Linked Households</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                positions[position].forEach(member => {
+                    // Find linked households
+                    const linkedHouseholds = memberHouseholdLinks
+                        .filter(link => link.memberId === member.id)
+                        .map(link => households.find(h => h.id === link.householdId))
+                        .filter(household => household);
+                    
+                    content += `
+                        <tr>
+                            <td>${member.name}</td>
+                            <td>${member.phone || '-'}</td>
+                            <td>${linkedHouseholds.map(h => h.name).join(', ') || '-'}</td>
+                        </tr>
+                    `;
+                });
                 
                 content += `
-                    <tr>
-                        <td>${member.name}</td>
-                        <td>${member.phone || '-'}</td>
-                        <td>${member.email || '-'}</td>
-                        <td>${householdNames || '-'}</td>
-                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 `;
             });
             
-            content += `
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="mb-4">
-                    <h5>Households</h5>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Phone</th>
-                                <th>Linked Member</th>
-                                <th>Total Donations</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
+            // Add households without linked members
+            const linkedHouseholdIds = memberHouseholdLinks.map(link => link.householdId);
+            const unlinkedHouseholds = households.filter(h => !linkedHouseholdIds.includes(h.id));
             
-            households.forEach(household => {
-                const linkedMember = memberHouseholdLinks.find(link => link.householdId === household.id);
-                const member = linkedMember ? committeeMembers.find(m => m.id === linkedMember.memberId) : null;
-                const totalDonations = linkedMember ? 
-                    linkedMember.donations.reduce((sum, donation) => sum + donation.amount, 0) : 0;
+            if (unlinkedHouseholds.length > 0) {
+                content += `
+                    <div class="mb-4">
+                        <h5>Households Without Linked Members</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                unlinkedHouseholds.forEach(household => {
+                    content += `
+                        <tr>
+                            <td>${household.name}</td>
+                            <td>${household.address || '-'}</td>
+                            <td>${household.phone || '-'}</td>
+                        </tr>
+                    `;
+                });
                 
                 content += `
-                    <tr>
-                        <td>${household.name}</td>
-                        <td>${household.address || '-'}</td>
-                        <td>${household.phone || '-'}</td>
-                        <td>${member ? member.name : '-'}</td>
-                        <td>₹${totalDonations.toFixed(2)}</td>
-                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 `;
-            });
+            }
             
             content += `
-                        </tbody>
-                    </table>
-                </div>
-                
                 <div class="islamic-pdf-footer">
                     <p>Generated on ${new Date().toLocaleDateString()} | ${masjidInfo.name || 'Masjid Management System'}</p>
                 </div>
@@ -4739,7 +5265,7 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Donor Name</th>
+                                <th>Household</th>
                                 <th>Amount (₹)</th>
                                 <th>Type</th>
                                 <th>Responsible Member</th>
@@ -4757,7 +5283,7 @@
                 content += `
                     <tr>
                         <td>${formatDate(donation.date)}</td>
-                        <td>${donation.donorName}</td>
+                        <td>${donation.householdName}</td>
                         <td>₹${donation.amount.toFixed(2)}</td>
                         <td>${getDonationTypeLabel(donation.type)}</td>
                         <td>${member ? member.name : '-'}</td>
@@ -4848,7 +5374,8 @@
                             <thead>
                                 <tr>
                                     <th>Date</th>
-                                    <th>Donor</th>
+                                    <th>Household</th>
+                                    <th>Member</th>
                                     <th>Amount (₹)</th>
                                 </tr>
                             </thead>
@@ -4862,7 +5389,8 @@
                     content += `
                         <tr>
                             <td>${formatDate(donation.date)}</td>
-                            <td>${donation.donor}</td>
+                            <td>${donation.householdName}</td>
+                            <td>${donation.memberName || '-'}</td>
                             <td>₹${donation.amount.toFixed(2)}</td>
                         </tr>
                     `;
